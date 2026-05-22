@@ -1,0 +1,10 @@
+old
+backup
+build
+backup
+build
+dist
+__pycache__
+*.egg-info
+.venv
+sandbox
