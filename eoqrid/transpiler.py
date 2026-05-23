@@ -77,6 +77,7 @@ class Transpiler:
         target.add_instruction(ExchangeInteraction(1.0, 1.0),
                                {pair: None for pair in coupling_list})
         target.add_instruction(SwapGate(), {pair: None for pair in coupling_list})
+        target.add_instruction(Measurement(), {pair: None for pair in coupling_list})
          
         initial_layout = list(range(self._num_dots))
         if seed is not None:
@@ -116,6 +117,8 @@ class Transpiler:
                         J = 1.0
                     t = np.pi / J
                     qc_native.data[i] = (ExchangeInteraction(t, J), [qid[0], qid[1]], [])
+                case 'm':
+                    pass
                 case _:
                     raise ValueError(f"{operation.name} is not supported.")
 
@@ -157,7 +160,6 @@ class Transpiler:
             qid = [q._index for q in qubits]
             cid = [c._index for c in clbits]
 
-            #m_str = ""
             match operation.name:
                 case 'rz':
                     phase = params[0]
@@ -177,8 +179,9 @@ class Transpiler:
                 case _:
                     raise ValueError(f"{operation.name} is not supported.")
 
-        if 'measure' not in qc.count_ops():
-            qc_native = self.optimize(qc_native, optimization_level, seed)
+        #if 'measure' not in qc.count_ops():
+        #    qc_native = self.optimize(qc_native, optimization_level, seed)
+        qc_native = self.optimize(qc_native, optimization_level, seed)
 
         return qc_native
 
@@ -394,5 +397,6 @@ class Transpiler:
         """
         a0, a1, a2 = q * 3, q * 3 + 1, q * 3 + 2
         qc_native = QuantumCircuit(self._num_dots, self._num_clbits)
-        qc_native.append(Measurement(), [a0, a1, a2], [c])
+        #qc_native.append(Measurement(), [a0, a1, a2], [c])
+        qc_native.append(Measurement(), [a0, a1], [c])
         return qc_native

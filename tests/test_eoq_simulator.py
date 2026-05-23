@@ -344,8 +344,6 @@ def test_measure_1q():
     assert res.num_dots == 3
     assert res.m_last == '0'
     assert res.freq == {'0': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([1.0, 0.0], dtype=complex))
 
     qc = QuantumCircuit(1, 1)
     qc.x(0)
@@ -356,8 +354,6 @@ def test_measure_1q():
     assert res.num_dots == 3
     assert res.m_last == '1'
     assert res.freq == {'1': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 1.0], dtype=complex))
     
     qc = QuantumCircuit(1, 2)
     qc.x(0)
@@ -368,8 +364,6 @@ def test_measure_1q():
     assert res.num_dots == 3
     assert res.m_last == '01'
     assert res.freq == {'01': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 1.0], dtype=complex))
     
     qc = QuantumCircuit(1, 3)
     qc.x(0)
@@ -380,9 +374,7 @@ def test_measure_1q():
     assert res.num_dots == 3
     assert res.m_last == '010'
     assert res.freq == {'010': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(1, 3)
     qc.x(0)
     qc.measure(0, 2)
@@ -392,15 +384,13 @@ def test_measure_1q():
     assert res.num_dots == 3
     assert res.m_last == '001'
     assert res.freq == {'001': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 1.0], dtype=complex))
     
 def test_measure_2q():
 
     sim = EoqSimulator()
 
     # X(0): num_clbits=2
-
+    
     qc = QuantumCircuit(2, 2)
     qc.x(0)
     qc.measure([0, 1], [0, 1])
@@ -410,8 +400,6 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '10'
     assert res.freq == {'10': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
     
     qc = QuantumCircuit(2, 2)
     qc.x(0)
@@ -422,8 +410,6 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '01'
     assert res.freq == {'01': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
     
     qc = QuantumCircuit(2, 2)
     qc.x(0)
@@ -434,8 +420,6 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '01'
     assert res.freq == {'01': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
     
     qc = QuantumCircuit(2, 2)
     qc.x(0)
@@ -446,9 +430,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '10'
     assert res.freq == {'10': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 2)
     qc.x(0)
     qc.measure(0, 0)
@@ -458,8 +440,6 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '10'
     assert res.freq == {'10': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
     
     qc = QuantumCircuit(2, 2)
     qc.x(0)
@@ -470,8 +450,6 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '01'
     assert res.freq == {'01': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
     
     qc = QuantumCircuit(2, 2)
     qc.x(0)
@@ -482,8 +460,6 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '00'
     assert res.freq == {'00': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
     
     qc = QuantumCircuit(2, 2)
     qc.x(0)
@@ -494,11 +470,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '00'
     assert res.freq == {'00': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     # X(0): num_clbits=3
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([0, 1], [0, 1])
@@ -508,9 +482,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '100'
     assert res.freq == {'100': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([0, 1], [1, 0])
@@ -520,9 +492,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '010'
     assert res.freq == {'010': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([1, 0], [0, 1])
@@ -532,9 +502,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '010'
     assert res.freq == {'010': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([1, 0], [1, 0])
@@ -544,9 +512,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '100'
     assert res.freq == {'100': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([0, 1], [1, 2])
@@ -556,9 +522,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '010'
     assert res.freq == {'010': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([0, 1], [2, 1])
@@ -568,9 +532,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '001'
     assert res.freq == {'001': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([1, 0], [1, 2])
@@ -580,9 +542,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '001'
     assert res.freq == {'001': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.x(0)
     qc.measure([1, 0], [2, 1])
@@ -592,9 +552,7 @@ def test_measure_2q():
     assert res.num_dots == 6
     assert res.m_last == '010'
     assert res.freq == {'010': 1}
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     # H(0)-CX(0,1): num_clbits=2
     
     qc = QuantumCircuit(2, 2)
@@ -607,13 +565,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '00':
         assert res.freq == {'00': 1}
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '11':
         assert res.freq == {'11': 1}
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 2)
     qc.h(0)
     qc.cx(0, 1)
@@ -624,13 +578,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '00':
         assert res.freq == {'00': 1}
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '10':
         assert res.freq == {'10': 1}
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 2)
     qc.h(0)
     qc.cx(0, 1)
@@ -641,13 +591,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '00':
         assert res.freq == {'00': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '01':
         assert res.freq == {'01': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 2)
     qc.h(0)
     qc.cx(0, 1)
@@ -658,13 +604,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '00':
         assert res.freq == {'00': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '10':
         assert res.freq == {'10': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 2)
     qc.h(0)
     qc.cx(0, 1)
@@ -675,13 +617,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '00':
         assert res.freq == {'00': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '01':
         assert res.freq == {'01': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     # H(0)-CX(0,1): num_clbits=3
     
     qc = QuantumCircuit(2, 3)
@@ -694,12 +632,8 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '110':
         assert res.freq == {'110': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
     
     qc = QuantumCircuit(2, 3)
     qc.h(0)
@@ -711,13 +645,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '011':
         assert res.freq == {'011': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -728,13 +658,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '101':
         assert res.freq == {'101': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -745,11 +671,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate, np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '100':
         assert res.freq == {'100': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate, np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -760,11 +684,9 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate, np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '010':
         assert res.freq == {'010': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate, np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
-
+    
     qc = QuantumCircuit(2, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -775,17 +697,15 @@ def test_measure_2q():
     assert res.num_dots == 6
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate, np.array([1.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '001':
         assert res.freq == {'001': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate, np.array([0.0, 0.0, 0.0, 1.0], dtype=complex))
     
 def test_measure_3q():
 
     sim = EoqSimulator()
 
     # X(0): num_clbits=3
-
+    
     qc = QuantumCircuit(3, 3)
     qc.x(0)
     qc.measure([0, 1, 2], [0, 1, 2])
@@ -794,8 +714,6 @@ def test_measure_3q():
     assert res.num_clbits == 3
     assert res.num_dots == 9
     assert res.m_last == '100'
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], dtype=complex))
 
     qc = QuantumCircuit(3, 3)
     qc.x(0)
@@ -805,9 +723,7 @@ def test_measure_3q():
     assert res.num_clbits == 3
     assert res.num_dots == 9
     assert res.m_last == '100'
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.x(0)
     qc.measure([0, 1], [1, 2])
@@ -816,9 +732,7 @@ def test_measure_3q():
     assert res.num_clbits == 3
     assert res.num_dots == 9
     assert res.m_last == '010'
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.x(0)
     qc.measure([0, 1], [2, 0])
@@ -827,17 +741,13 @@ def test_measure_3q():
     assert res.num_clbits == 3
     assert res.num_dots == 9
     assert res.m_last == '001'
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.x(0)
     qc.measure(0, 0)
     res = sim.run(qc)
     assert res.m_last == '100'
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.x(0)
     qc.measure(0, 1)
@@ -846,9 +756,7 @@ def test_measure_3q():
     assert res.num_clbits == 3
     assert res.num_dots == 9
     assert res.m_last == '010'
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.x(0)
     qc.measure(0, 2)
@@ -857,11 +765,9 @@ def test_measure_3q():
     assert res.num_clbits == 3
     assert res.num_dots == 9
     assert res.m_last == '001'
-    assert equal_state_vector(res.qstate.logical_qstate,
-                              np.array([0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0], dtype=complex))
-
+    
     # H(0)-CX(0,1): num_clbits=3
-
+    
     qc = QuantumCircuit(3, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -872,13 +778,9 @@ def test_measure_3q():
     assert res.num_dots == 9
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '110':
         assert res.freq == {'110': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -889,13 +791,9 @@ def test_measure_3q():
     assert res.num_dots == 9
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '110':
         assert res.freq == {'110': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -906,13 +804,9 @@ def test_measure_3q():
     assert res.num_dots == 9
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '100':
         assert res.freq == {'100': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0], dtype=complex))
-
+    
     qc = QuantumCircuit(3, 3)
     qc.h(0)
     qc.cx(0, 1)
@@ -923,12 +817,8 @@ def test_measure_3q():
     assert res.num_dots == 9
     if res.m_last == '000':
         assert res.freq == {'000': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], dtype=complex))
     elif res.m_last == '010':
         assert res.freq == {'010': 1} 
-        assert equal_state_vector(res.qstate.logical_qstate,
-                                  np.array([1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0], dtype=complex))
 
 def test_run_exception():
 

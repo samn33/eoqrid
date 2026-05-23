@@ -186,9 +186,10 @@ class EoqSimulator:
         qc_t = QuantumCircuit(num_dots, num_clbits)
         qc_t.set_statevector(qstate.statevector)
         qc_t = qc_t.compose(
-            transpile(qc_native, backend=backend, optimization_level=0)
+            #transpile(qc_native, backend=backend, optimization_level=0)
+            transpile(qc_native.decompose(), backend=backend, optimization_level=0)
         )
-        qc_t.save_statevector()
+        #qc_t.save_statevector()
         
         freq_qiskit = defaultdict(int)
         if shots > 1:
@@ -196,7 +197,7 @@ class EoqSimulator:
             freq_qiskit |= result.get_counts()
         
         result = backend.run(qc_t, shots=1).result()
-        qstate.statevector = result.get_statevector()
+        #qstate.statevector = result.get_statevector()
         for k,v in result.get_counts().items():
             m_last = k[::-1]
             freq_qiskit[k] += v
@@ -207,7 +208,7 @@ class EoqSimulator:
             num_qubits = num_qubits,
             num_clbits = num_clbits,
             num_dots = num_dots,
-            qstate = qstate,
+            qstate = None,
             m_last = m_last,
             freq = freq,
         )

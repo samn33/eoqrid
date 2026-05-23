@@ -9,3 +9,6 @@ ruff:
 
 test:
 	cd tests; pytest -s .
+
+sample:
+	cd samples; python sample_08.py
