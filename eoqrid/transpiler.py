@@ -61,7 +61,7 @@ class Transpiler:
             optimized quantum circuits for native device.
  
         """
-        if qc_native.num_qubits != max(self._topology.nodes) + 1:
+        if qc_native.num_qubits > max(self._topology.nodes) + 1:
             raise ValueError("the number of nodes in the topology and the number of qubits do not match.")
 
         self._num_qubits = qc_native.num_qubits // 3
@@ -179,8 +179,6 @@ class Transpiler:
                 case _:
                     raise ValueError(f"{operation.name} is not supported.")
 
-        #if 'measure' not in qc.count_ops():
-        #    qc_native = self.optimize(qc_native, optimization_level, seed)
         qc_native = self.optimize(qc_native, optimization_level, seed)
 
         return qc_native
@@ -395,8 +393,7 @@ class Transpiler:
             native quantum circuits.
  
         """
-        a0, a1, a2 = q * 3, q * 3 + 1, q * 3 + 2
+        a0, a1 = q * 3, q * 3 + 1
         qc_native = QuantumCircuit(self._num_dots, self._num_clbits)
-        #qc_native.append(Measurement(), [a0, a1, a2], [c])
         qc_native.append(Measurement(), [a0, a1], [c])
         return qc_native

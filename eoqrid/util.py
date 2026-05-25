@@ -71,7 +71,8 @@ def random_connected_graph(n: int, m:int, seed: int | None = None) -> nx.Graph:
     return G
 
 
-def random_quantum_circuit(num_qubits: int, depth: int, seed: int | None = None) -> QuantumCircuit:
+def random_quantum_circuit(num_qubits: int, depth: int, with_measurements: bool = False,
+                           seed: int | None = None) -> QuantumCircuit:
     """
     get a random quantum circuit.
 
@@ -81,6 +82,8 @@ def random_quantum_circuit(num_qubits: int, depth: int, seed: int | None = None)
         number of quantum bits.
     depth : int
         depth of quantum circuit.
+    with_measurement : bool
+        make quantum circuit with measurements.
     seed : int | None, default None
         seed of random generation.
 
@@ -93,8 +96,18 @@ def random_quantum_circuit(num_qubits: int, depth: int, seed: int | None = None)
     if seed is not None:
         random.seed(seed)
 
-    qc = QuantumCircuit(num_qubits)
-    gates = ['h','x','z','rz','cx','swap']
+    qc = QuantumCircuit(num_qubits, 1)
+
+    gates = ['h','x','z','rx','rz','s','sdg','t','tdg']
+    if with_measurements is False:
+        if num_qubits == 1:
+            pass
+        elif num_qubits > 1:
+            gates += ['cx','cz','swap']
+        else:
+            raise ValueError("num_qubits must be larger than 1.")
+    else:
+        gates += ['measure']
 
     for _ in range(depth):
         gate = random.choice(gates)
@@ -102,13 +115,23 @@ def random_quantum_circuit(num_qubits: int, depth: int, seed: int | None = None)
         if gate == 'cx':
             ops = random.sample(range(num_qubits), 2)
             qc.cx(ops[0], ops[1])
+        elif gate == 'cz':
+            ops = random.sample(range(num_qubits), 2)
+            qc.cz(ops[0], ops[1])
         elif gate == 'swap':
             ops = random.sample(range(num_qubits), 2)
             qc.swap(ops[0], ops[1])
+        elif gate == 'rx':
+            q = random.randint(0, num_qubits - 1)
+            phase = np.pi * random.uniform(-2.0, 2.0)
+            qc.rx(phase, q)
         elif gate == 'rz':
             q = random.randint(0, num_qubits - 1)
             phase = np.pi * random.uniform(-2.0, 2.0)
             qc.rz(phase, q)
+        elif gate == 'measure':
+            q = random.randint(0, num_qubits - 1)
+            qc.measure(q, 0)
         else:
             q = random.randint(0, num_qubits - 1)
             getattr(qc, gate)(q)

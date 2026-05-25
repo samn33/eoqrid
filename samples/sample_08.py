@@ -16,7 +16,6 @@ def main():
     print(qc)
 
     topo = nx.Graph()
-    #topo.add_edge(0, 1)
     topo.add_edge(0, 2)
     topo.add_edge(1, 2)
     topo.add_edge(2, 3)
