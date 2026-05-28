@@ -1,7 +1,7 @@
-import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit
 
 from eoqrid import EoqSimulator
+from eoqrid.util import plot_qc
 
 def main():
 
@@ -12,16 +12,15 @@ def main():
     print("== quantum circuit ==")
     print(qc)
 
-    sim = EoqSimulator()
-    qc_native = sim.transpile(qc)
-    qc_native.draw('mpl')
-    plt.show()
+    eoq = EoqSimulator()
+    qc_native = eoq.transpile(qc)
+    plot_qc(qc_native)
 
     print("== transpiled quantum circuit ==")
     print(qc_native)
     print(f"depth = {qc_native.depth()}")
 
-    res = sim.execute(qc_native)
+    res = eoq.execute(qc_native)
 
     print("== quantum state (logical) ==")
     res.qstate.draw()

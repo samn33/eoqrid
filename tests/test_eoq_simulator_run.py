@@ -11,7 +11,7 @@ def equal_array(a, b):
 def equal_state_vector(a, b):
     return math.isclose(abs(np.vdot(a, b)), 1.0, abs_tol=1e-8)
     
-def test_constructor_logical_qstate():
+def test_initial_logical_qstate():
 
     sim = EoqSimulator()
 
@@ -33,7 +33,7 @@ def test_constructor_logical_qstate():
     assert res.num_dots == 6
     assert equal_state_vector(expect, actual)
 
-def test_constructor_physical_qstate():
+def test_initial_physical_qstate():
 
     sim = EoqSimulator()
 

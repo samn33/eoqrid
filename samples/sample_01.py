@@ -10,14 +10,14 @@ def main():
     print("== quantum circuit ==")
     print(qc)
 
-    sim = EoqSimulator()
-    qc_native = sim.transpile(qc)
+    eoq = EoqSimulator()
+    qc_native = eoq.transpile(qc)
 
     print("== transpiled quantum circuit ==")
     print(qc_native)
     print(f"depth = {qc_native.depth()}")
 
-    res = sim.execute(qc_native)
+    res = eoq.execute(qc_native)
 
     print("== quantum state (logical) ==")
     res.qstate.draw()

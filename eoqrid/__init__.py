@@ -5,4 +5,4 @@ from .transpiler import Transpiler
 from .exchange_interaction import ExchangeInteraction
 from .measurement import Measurement
 from .result import Result
-from .util import random_connected_graph, plot_graph, random_quantum_circuit
+from .util import plot_qc, plot_graph, random_connected_graph, random_quantum_circuit

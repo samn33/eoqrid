@@ -5,6 +5,18 @@ import matplotlib.pyplot as plt
 from qiskit import QuantumCircuit
 
 
+def plot_qc(qc: QuantumCircuit) -> None:
+
+    style = {
+        "displaycolor": {
+            "ex": 'darkred',
+            "m": 'darkgreen',
+        }
+    }
+    qc.draw('mpl', style=style)
+    plt.show()
+
+
 def plot_graph(G: nx.Graph) -> None:
     """
     plot the graph.
@@ -71,8 +83,8 @@ def random_connected_graph(n: int, m:int, seed: int | None = None) -> nx.Graph:
     return G
 
 
-def random_quantum_circuit(num_qubits: int, depth: int, with_measurements: bool = False,
-                           seed: int | None = None) -> QuantumCircuit:
+def random_quantum_circuit(num_qubits: int, depth: int, seed: int | None = None,
+                           with_measurements: bool = False) -> QuantumCircuit:
     """
     get a random quantum circuit.
 
@@ -96,10 +108,11 @@ def random_quantum_circuit(num_qubits: int, depth: int, with_measurements: bool 
     if seed is not None:
         random.seed(seed)
 
-    qc = QuantumCircuit(num_qubits, 1)
+    #qc = QuantumCircuit(num_qubits, 1)
 
     gates = ['h','x','z','rx','rz','s','sdg','t','tdg']
     if with_measurements is False:
+        qc = QuantumCircuit(num_qubits)
         if num_qubits == 1:
             pass
         elif num_qubits > 1:
@@ -107,6 +120,7 @@ def random_quantum_circuit(num_qubits: int, depth: int, with_measurements: bool 
         else:
             raise ValueError("num_qubits must be larger than 1.")
     else:
+        qc = QuantumCircuit(num_qubits, 1)
         gates += ['measure']
 
     for _ in range(depth):

@@ -11,4 +11,4 @@ test:
 	cd tests; pytest -s .
 
 sample:
-	cd samples; python sample_08.py
+	cd samples; python sample_09.py
