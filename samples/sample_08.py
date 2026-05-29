@@ -1,29 +1,23 @@
 from qiskit import QuantumCircuit
 
 from eoqrid import EoqSimulator
+from eoqrid.util import plot_qc
 
 def main():
 
-    qc = QuantumCircuit(1)
+    qc = QuantumCircuit(1, 1)
     qc.h(0)
+    qc.measure(0, 0)
 
     print("== quantum circuit ==")
     print(qc)
-
+    
     eoq = EoqSimulator()
     qc_native = eoq.transpile(qc)
 
     print("== transpiled quantum circuit ==")
     print(qc_native)
-    print(f"depth = {qc_native.depth()}")
+    plot_qc(qc_native)
 
-    res = eoq.execute(qc_native)
-
-    print("== quantum state (logical) ==")
-    res.qstate.draw()
-
-    print("== quantum state (physical) ==")
-    res.qstate.draw(mode='physical')
-    
 if __name__ == "__main__":
     main()

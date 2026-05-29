@@ -16,9 +16,9 @@ def main():
     topo.add_edge(3, 4)
     topo.add_edge(4, 5)
 
-    sim = EoqSimulator(topo)
-    qc_native = sim.transpile(qc)
-    res = sim.execute(qc_native)
+    eoq = EoqSimulator(topo)
+    qc_native = eoq.transpile(qc)
+    res = eoq.execute(qc_native)
 
     print("== quantum state (logical) ==")
     res.qstate.draw()
@@ -27,7 +27,7 @@ def main():
     res.qstate.draw(mode='physical', ignore_zeros=True)
 
     print("== fidelity ==")
-    fid = sim.fidelity(qc, qc_native)
+    fid = eoq.fidelity(qc, qc_native)
     print(f"fidelity = {fid:.6f}")
     
 if __name__ == "__main__":

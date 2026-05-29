@@ -79,12 +79,34 @@ class EoqSimulator:
         """
         if qc.num_qubits % 3 != 0:
             return False
-        for k,v in qc.count_ops().items():
-            if k != 'ex' and k != 'm':
+        for name in qc.count_ops():
+            if name != 'ex' and name != 'm':
                 return False
         return True
         
-    def optimize(self, qc_native: QuantumCircuit, optimization_level: int = 0, seed: int | None = None) -> QuantumCircuit:
+    def _qc_is_native(self, qc: QuantumCircuit) -> bool:
+        """
+        quantum circuit is for physical device.
+
+        Parameters
+        ----------
+        qc : QuantumCircuit
+            quantum circuit
+        
+        Returns
+        -------
+        bool
+            true if quantum circuit is transpiled, false otherwise
+
+        """
+        for name in qc.count_ops():
+            if name == 'ex' or name == 'm':
+                return True
+        return False
+        
+    def optimize(self, qc_native: QuantumCircuit,
+                 optimization_level: int = 0,
+                 seed: int | None = None) -> QuantumCircuit:
         """
         optimize the native quantum circuit.
         
@@ -106,8 +128,10 @@ class EoqSimulator:
         if not isinstance(qc_native, QuantumCircuit):
             raise TypeError("the qc must be a QuantumCircuit object.")
         for name in qc_native.count_ops():
-            if name != 'ex':
+            if name != 'ex' and name != 'm':
                 raise ValueError("the qc_native contains gates other than exchange interaction.")
+        if optimization_level not in (0, 1, 2, 3):
+            raise ValueError("the optimization_level must be 0, 1, 2, or 3.")
 
         num_dots = qc_native.num_qubits
         topology = nx.Graph()
@@ -140,8 +164,8 @@ class EoqSimulator:
         """
         if not isinstance(qc, QuantumCircuit):
             raise TypeError("the qc must be a QuantumCircuit object.")
-        if not self._qc_is_noops(qc) and self._qc_is_transpiled(qc):
-            raise ValueError("the qc is already transpiled.")
+        if not self._qc_is_noops(qc) and self._qc_is_native(qc):
+            raise ValueError("the qc is for physical device.")
 
         num_dots = qc.num_qubits * 3
         topology = nx.Graph()
@@ -186,9 +210,8 @@ class EoqSimulator:
         qc_t = QuantumCircuit(num_dots, num_clbits)
         qc_t.set_statevector(qstate.statevector)
         qc_t = qc_t.compose(
-            transpile(qc_native, backend=backend, optimization_level=0)
+            transpile(qc_native.decompose(), backend=backend, optimization_level=0)
         )
-        qc_t.save_statevector()
         
         freq_qiskit = defaultdict(int)
         if shots > 1:
@@ -196,7 +219,6 @@ class EoqSimulator:
             freq_qiskit |= result.get_counts()
         
         result = backend.run(qc_t, shots=1).result()
-        qstate.statevector = result.get_statevector()
         for k,v in result.get_counts().items():
             m_last = k[::-1]
             freq_qiskit[k] += v
@@ -207,7 +229,7 @@ class EoqSimulator:
             num_qubits = num_qubits,
             num_clbits = num_clbits,
             num_dots = num_dots,
-            qstate = qstate,
+            qstate = None,
             m_last = m_last,
             freq = freq,
         )

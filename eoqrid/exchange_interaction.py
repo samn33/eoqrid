@@ -12,7 +12,7 @@ class ExchangeInteraction(Gate):
     def _define(self):
         duration = self.params[0]
         exchange_integral = self.params[1]
-        qc = QuantumCircuit(2, name=self.name)
+        qc = QuantumCircuit(self.num_qubits, name=self.name)
         phase = 0.5 * exchange_integral * duration
         qc.rxx(phase, 0, 1)
         qc.ryy(phase, 0, 1)
