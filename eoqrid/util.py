@@ -108,8 +108,6 @@ def random_quantum_circuit(num_qubits: int, depth: int, seed: int | None = None,
     if seed is not None:
         random.seed(seed)
 
-    #qc = QuantumCircuit(num_qubits, 1)
-
     gates = ['h','x','z','rx','rz','s','sdg','t','tdg']
     if with_measurements is False:
         qc = QuantumCircuit(num_qubits)

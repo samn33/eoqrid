@@ -12,6 +12,8 @@ class ExchangeInteraction(Gate):
     def _define(self):
         duration = self.params[0]
         exchange_integral = self.params[1]
+        if duration < 0.0:
+            raise ValueError("duration must be a positive value.")
         qc = QuantumCircuit(self.num_qubits, name=self.name)
         phase = 0.5 * exchange_integral * duration
         qc.rxx(phase, 0, 1)

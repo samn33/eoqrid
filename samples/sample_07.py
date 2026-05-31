@@ -14,9 +14,13 @@ def main():
     eoq.execute(qc_native).qstate.draw()
 
     print("== native quantum circuit for Pauli-X ==")
-    qc_native.append(ExchangeInteraction(theta - np.pi), [1, 2])
-    qc_native.append(ExchangeInteraction(-theta), [0, 1])
-    qc_native.append(ExchangeInteraction(theta - np.pi), [1, 2])
+    #qc_native.append(ExchangeInteraction(theta - np.pi), [1, 2])
+    #qc_native.append(ExchangeInteraction(-theta), [0, 1])
+    #qc_native.append(ExchangeInteraction(theta - np.pi), [1, 2])
+
+    qc_native.append(ExchangeInteraction(np.pi - theta), [1, 2])
+    qc_native.append(ExchangeInteraction(theta), [0, 1])
+    qc_native.append(ExchangeInteraction(np.pi - theta), [1, 2])
     print(qc_native)
 
     print("== final state ==")
