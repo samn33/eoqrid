@@ -10,6 +10,8 @@ from qiskit.circuit.library import SwapGate
 from eoqrid.exchange_interaction import ExchangeInteraction
 from eoqrid.measurement import Measurement
 
+EPS = 1e-8
+
 class Transpiler:
     """
     Transpiler
@@ -237,7 +239,16 @@ class Transpiler:
         a0, a1 = q * 3, q * 3 + 1
         exchange_integral = 1.0
         time = -phase
-    
+
+        if abs(time % (2.0 * np.pi)) <= EPS:
+            return QuantumCircuit(self._num_dots)
+        elif time > 0.0:
+            time = time - (time // (2.0 * np.pi)) * (2.0 * np.pi)
+        elif time < 0.0:
+            time = -time
+            time = time - (time // (2.0 * np.pi)) * (2.0 * np.pi)
+            time = 2.0 * np.pi - time
+
         qc_native = QuantumCircuit(self._num_dots)
         qc_native.append(ExchangeInteraction(time, exchange_integral), [a0, a1])
         
@@ -279,8 +290,8 @@ class Transpiler:
         theta = np.arccos(1.0 / 3.0)
         exchange_integral_01 = 1.0
         exchange_integral_12 = 1.0
-        time_01 = -theta
-        time_12 = -(np.pi - theta)
+        time_01 = 2.0 * np.pi - theta
+        time_12 = np.pi + theta
 
         qc_native = QuantumCircuit(self._num_dots)
         qc_native.append(ExchangeInteraction(time_12, exchange_integral_12), [a1, a2])
@@ -308,8 +319,9 @@ class Transpiler:
         theta = np.arccos(1.0/3.0)
         exchange_integral_01 = 1.0
         exchange_integral_12 = 1.0
-        time_01 = -(np.pi - theta) / 2.0
-        time_12 = -(np.pi + theta)
+
+        time_01 = (3.0 * np.pi + theta) / 2.0
+        time_12 = np.pi - theta
 
         qc_native = QuantumCircuit(self._num_dots)
         qc_native.append(ExchangeInteraction(time_01, exchange_integral_01), [a0, a1])
