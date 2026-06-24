@@ -21,12 +21,12 @@ classifiers = [
 	    "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-	     "numpy",
-	     "networkx",
-	     "matplotlib",
-	     "pylatexenc",
-	     "qiskit",
-	     "qiskit-aer",
+	     "numpy>=2.4.4",
+	     "networkx>=3.6.1",
+	     "matplotlib>=3.10.9",
+	     "pylatexenc>=2.10",
+	     "qiskit>=2.4.1",
+	     "qiskit-aer>=0.17.2",
 ]
 
 [project.optional-dependencies]
