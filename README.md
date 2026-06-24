@@ -16,15 +16,20 @@ eoqrid is a Python library designed to simulate silicon quantum computers that c
 ## Install
 
 ```bash
-$ git clone https://github.com/samn33/eoqrid.git
-$ cd eoqrid
-$ pip install .
+pip install eoqrid
+```
+or
+
+```bash
+git clone https://github.com/samn33/eoqrid.git
+cd eoqrid
+pip install .
 ```
 
 ## Uninstall
 
 ```bash
-$ pip uninstall eoqrid
+pip uninstall eoqrid
 ```
 
 ## Usage
