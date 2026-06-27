@@ -195,3 +195,23 @@ class QuantumState:
             else:
                 print("c[{}] = {:+.4f}{:+.4f}*i : {:.4f} {}"
                       .format(bits, v.real, v.imag, abs(v)**2, bar_str))
+
+    def leakage(self) -> float:
+        """
+        get the leakage for the quantum state.
+
+        Parameters
+        ----------
+        None
+
+        Returns
+        -------
+        float
+            leakage
+
+        """
+        proj_qstate = np.zeros(len(self.physical_qstate), dtype=complex)
+        for i, b in enumerate(self._base):
+            proj_qstate = proj_qstate + (self.logical_qstate[i] * b) # qiskit_order
+
+        return 1.0 - abs(np.vdot(self.qiskit_data, proj_qstate))

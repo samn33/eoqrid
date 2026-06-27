@@ -5,7 +5,7 @@ Exchange-Only Quantum Computing Simulator
 
 ## Feature
 
-eoqrid is a Python library designed to simulate silicon quantum computers that control qubits using the Exchange-Only method. Itprovides the following two main features:
+eoqrid is a Python library designed to simulate silicon quantum computers that control qubits using the Exchange-Only method. It provides the following two main features:
 
 * **Logical Quantum Circuit Transpilation**
   - It can translate logically described quantum circuits into sets of exchange interactions and measurements so they can be executed on silicon qubits. Furthermore, it allows for the transformation and optimization of circuits to match the specific topology of a quantum chip.
@@ -92,7 +92,7 @@ c[111] = -0.0000-0.0000*i : 0.0000 |
 
 ## Documents
 
-- [Tutorial(japanese)](docs/tutorial_jp.md)
+- [Tutorial(japanese)](docs/tutorial/jp/main.md)
 
 ## References
 
