@@ -1,4 +1,4 @@
-__version__ = "0.1.5"
+__version__ = "0.2.0"
 from .eoq_simulator import EoqSimulator
 from .quantum_state import QuantumState
 from .transpiler import Transpiler

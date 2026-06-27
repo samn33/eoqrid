@@ -30,3 +30,6 @@ def test_random_qc(trial, num_qubits, depth, seed):
         
         fid = np.abs(np.vdot(state_expect, res.qstate.logical_qstate)) ** 2
         assert math.isclose(fid, 1.0, abs_tol=1e-8)
+
+        leak = res.qstate.leakage()
+        assert math.isclose(leak, 0.0, abs_tol=1e-8)
