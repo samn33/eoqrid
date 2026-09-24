@@ -3,27 +3,26 @@ from dataclasses import dataclass
 
 from eoqrid.quantum_state import QuantumState
 
+
 @dataclass(frozen=True)
 class Result:
     """
-    Result of execution
+    Execution result of a quantum circuit or simulation.
 
     Attributes
     ----------
     num_qubits : int
-        number of quantum bits (logical qubits).
+        Number of logical qubits.
     num_clbits : int
-        number of classical bits.
+        Number of classical bits.
     num_dots : int
-        number of dots (physical qubits).
-        num_dots = 3 * num_qubits.
+        Number of quantum dots (physical qubits).
     qstate : QuantumState
-        quantum state object.
+        Quantum state object.
     m_last : str
-        last measurement value
+        Most recent measurement outcome.
     freq : defaultdict
-        measurement frequency
-    
+        Measurement frequency distribution.
     """
     num_qubits : int
     num_clbits : int
