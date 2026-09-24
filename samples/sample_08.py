@@ -1,7 +1,8 @@
 from qiskit import QuantumCircuit
 
-from eoqrid import EoqSimulator
+from eoqrid import EoqEngine
 from eoqrid.util import plot_qc
+
 
 def main():
 
@@ -12,12 +13,12 @@ def main():
     print("== quantum circuit ==")
     print(qc)
     
-    eoq = EoqSimulator()
-    qc_native = eoq.transpile(qc)
+    eoq = EoqEngine(3)
+    qc_phys = eoq.transpile(qc)
 
     print("== transpiled quantum circuit ==")
-    print(qc_native)
-    plot_qc(qc_native)
+    print(qc_phys)
+    plot_qc(qc_phys)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,95 @@
+@startuml
+title Class Diagram
+
+' --- Relationships ---
+
+EoqEngine *--> EoqTranspiler
+EoqEngine *--> EoqSimulator
+EoqEngine *--> DotArchitecture
+
+EoqTranspiler o--> DotArchitecture
+EoqSimulator o--> DotArchitecture
+
+EoqTranspiler ..> PhysicalQuantumCircuit : generates
+EoqSimulator ..> PhysicalQuantumCircuit : uses
+EoqSimulator ..> Result : produces
+
+Result *--> QuantumState
+
+PhysicalQuantumCircuit o--> Singlet
+PhysicalQuantumCircuit o--> ExchangeInteraction
+PhysicalQuantumCircuit o--> Measurement
+
+' --- Classes ---
+
+class EoqEngine {
+  + arch: DotArchitecture
+  + num_dots: int
+  + transpiler: EoqTranspiler
+  + simulator: EoqSimulator
+  --
+  + transpile(qc: QuantumCircuit, optimization_level: int, seed: int): PhysicalQuantumCircuit
+  + run(QuantumCircuit: qc, optimization_level: int, shots: int, seed: int): Result
+  + execute(qc_phys: PhysicalQuantumCircuit, shots: int, seed: int): Result
+  + fidelity(qc: QuantumCircuit, qc_phys: PhysicalQuantumCircuit): float
+}
+
+class EoqTranspiler {
+  + arch: DotArchitecture
+  --
+  + transpile(qc: QuantumCircuit, optimization_level: int, seed: int): PhysicalQuantumCircuit
+}
+
+class EoqSimulator {
+  + arch: DotArchitecture
+  --
+  + run(schedule: PulseSchedule, shots: int): Result
+  + execute(PhysicalQuantumCircuit: qc_phys, int, shots: int seed): Result
+}
+
+class PhysicalQuantumCircuit {
+  + qc: QuantumCircuit
+  --
+  + is_valid(): bool
+  + initialize(): None
+}
+
+class ExchangeInteraction {
+}
+
+class Measurement {
+}
+
+class Singlet {
+}
+
+class DotArchitecture {
+  + topology: nx.Graph
+  + readout_pairs: list[tuple]
+  --
+  + is_valid(): None
+  + add_edge(a: int, b: int): None
+  + add_readout_pair(a: int, b: int): None
+  + is_readout_pair(a: int, b: int): bool
+}
+
+class Result {
+  + num_qubits: int
+  + num_clbits: int
+  + num_dots: int
+  + qstate: QuantumState
+  + m_last: str
+  + freq: dict
+}
+
+class QuantumState {
+  + num_qubits: int
+  + num_dots: int
+  + statevector: Statevector
+  + data: np.ndarray
+  + qiskit_data: np.ndarray
+  + logical_qstate: np.ndarray
+  + physical_qstate: np.ndarray
+}
+
+@enduml

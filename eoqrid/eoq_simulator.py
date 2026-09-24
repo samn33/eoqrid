@@ -1,206 +1,78 @@
 from __future__ import annotations
-import itertools
+
 from collections import defaultdict
+
 import numpy as np
-import networkx as nx
 from qiskit import QuantumCircuit, transpile
 from qiskit.quantum_info import Statevector
 from qiskit_aer import AerSimulator
 
+from eoqrid.dot_architecture import DotArchitecture
+from eoqrid.eoq_transpiler import EoqTranspiler
+from eoqrid.physical_quantum_circuit import PhysicalQuantumCircuit
 from eoqrid.quantum_state import QuantumState
-from eoqrid.transpiler import Transpiler
 from eoqrid.result import Result
 
-DEF_EXCHANGE_INTEGRAL = 1.0
 
 class EoqSimulator:
     """
-    Exchange-Only Quantum Computing Simulator
+    Simulator for exchange-only quantum computing.
     
     Attributes
     ----------
-    topology : nx.Graph
-        quantum chip topology
-
+    arch : DotArchitecture
+        Quantum dot architecture layout.
     """
-    def __init__(self, topology: nx.Graph = None) -> None:
+    def __init__(self, arch: DotArchitecture) -> None:
         """
+        Initialize the exchange-only quantum computing simulator.
+
         Parameters
         ----------
-        topology : nx.Graph
-            quantum chip topology
-
-        Returns
-        -------
-        None
-        
+        arch : DotArchitecture
+            Quantum dot architecture layout.
         """
-        self._topology = topology
+        self._arch = arch
 
     @property
-    def topology(self) -> nx.Graph:
-        return self._topology
+    def arch(self) -> DotArchitecture:
+        return self._arch
 
-    @topology.setter
-    def topology(self, value) -> None:
-        self._topology = value
+    @property
+    def num_dots(self) -> int:
+        return self._arch.num_dots
 
-    def _qc_is_noops(self, qc: QuantumCircuit) -> bool:
+    @property
+    def num_qubits(self) -> int:
+        return self._arch.num_qubits
+        
+    def _execute_measurement(
+            self,
+            qc_phys: PhysicalQuantumCircuit,
+            shots: int = 1,
+    ) -> Result:
         """
-        quantum circuit contains no gates operation or not.
+        Execute a physical quantum circuit with measurements.
 
         Parameters
         ----------
-        qc : QuantumCircuit
-            quantum circuit
-        
-        Returns
-        -------
-        bool
-            true if quantum circuit contains no gates operation, false otherwise
-
-        """
-        return qc.count_ops() == {}
-        
-    def _qc_is_transpiled(self, qc: QuantumCircuit) -> bool:
-        """
-        quantum circuit is already transpiled or not.
-
-        Parameters
-        ----------
-        qc : QuantumCircuit
-            quantum circuit
-        
-        Returns
-        -------
-        bool
-            true if quantum circuit is transpiled, false otherwise
-
-        """
-        if qc.num_qubits % 3 != 0:
-            return False
-        for name in qc.count_ops():
-            if name != 'ex' and name != 'm':
-                return False
-        return True
-        
-    def _qc_is_native(self, qc: QuantumCircuit) -> bool:
-        """
-        quantum circuit is for physical device.
-
-        Parameters
-        ----------
-        qc : QuantumCircuit
-            quantum circuit
-        
-        Returns
-        -------
-        bool
-            true if quantum circuit is transpiled, false otherwise
-
-        """
-        for name in qc.count_ops():
-            if name == 'ex' or name == 'm':
-                return True
-        return False
-        
-    def optimize(self, qc_native: QuantumCircuit,
-                 optimization_level: int = 0,
-                 seed: int | None = None) -> QuantumCircuit:
-        """
-        optimize the native quantum circuit.
-        
-        Parameters
-        ----------
-        qc_native : QuantumCircuit
-            quantum circuits for native device.
-        optimization_level : int
-            optimization level.
-        seed : int | None, default None
-            seed of random generation.
-        
-        Returns
-        -------
-        QuantumCircuit
-            optimized quantum circuit.
-
-        """
-        if not isinstance(qc_native, QuantumCircuit):
-            raise TypeError("the qc must be a QuantumCircuit object.")
-        for name in qc_native.count_ops():
-            if name != 'ex' and name != 'm':
-                raise ValueError("the qc_native contains gates other than exchange interaction.")
-        if optimization_level not in (0, 1, 2, 3):
-            raise ValueError("the optimization_level must be 0, 1, 2, or 3.")
-
-        num_dots = qc_native.num_qubits
-        topology = nx.Graph()
-        if self._topology is None:
-            for pair in itertools.combinations(range(num_dots), 2):
-                topology.add_edge(pair[0], pair[1], weight=DEF_EXCHANGE_INTEGRAL)
-        else:
-            topology = self._topology
-        trans = Transpiler(topology)
-        return trans.optimize(qc_native, optimization_level, seed)
-
-    def transpile(self, qc: QuantumCircuit, optimization_level: int = 0, seed: int | None = None) -> QuantumCircuit:
-        """
-        transpile the quantum circuit.
-        
-        Parameters
-        ----------
-        qc_native : QuantumCircuit
-            quantum circuits for native device.
-        optimization_level : int, default 1
-            optimization level.
-        seed : int | None, default None
-            seed of random generation.
-        
-        Returns
-        -------
-        qc_t : QuantumCircuit
-            transpiled quantum circuit.
-
-        """
-        if not isinstance(qc, QuantumCircuit):
-            raise TypeError("the qc must be a QuantumCircuit object.")
-        if not self._qc_is_noops(qc) and self._qc_is_native(qc):
-            raise ValueError("the qc is for physical device.")
-
-        num_dots = qc.num_qubits * 3
-        topology = nx.Graph()
-        if self._topology is None:
-            for pair in itertools.combinations(range(num_dots), 2):
-                topology.add_edge(pair[0], pair[1], weight=DEF_EXCHANGE_INTEGRAL)
-        else:
-            topology = self._topology
-        trans = Transpiler(topology)
-        qc_t = trans.run(qc, optimization_level, seed)
-
-        return qc_t
-
-    def _execute_measurement(self, qc_native: QuantumCircuit, shots: int = 1) -> Result:
-        """
-        execute the native quantum circuit with measurements.
-        
-        Parameters
-        ----------
-        qc_native : QuantumCircuit
-            quantum circuits for native device.
+        qc_phys : PhysicalQuantumCircuit
+            Physical quantum circuit.
         shots : int, default 1
-            shots of execute the quantumcircuit.
-        
+            Number of shots.
+
         Returns
         -------
-        res : Result
-            result of execution.
-
+        Result
+            Execution result including measurement outcomes.
         """
-        if not isinstance(qc_native, QuantumCircuit):
-            raise TypeError("the qc_native must be a QuantumCircuit object.")
-        if not self._qc_is_noops(qc_native) and not self._qc_is_transpiled(qc_native):
-            raise ValueError("the qc_native must be transpiled.")
-        
+        qc_native = qc_phys.to_qiskit()
+        if qc_native.num_qubits != self.num_dots:
+            raise ValueError("number of qubits of qc_native must be same as num_dots.")
+
+        if len(self._arch.readout_pairs) == 0:
+            raise ValueError("readout pair does not exist.")
+
         num_dots = qc_native.num_qubits
         num_qubits = num_dots // 3
         num_clbits = qc_native.num_clbits
@@ -235,25 +107,27 @@ class EoqSimulator:
         )
         return res
 
-    def _execute_no_measurement(self, qc_native: QuantumCircuit, shots: int = 1) -> Result:
+    def _execute_no_measurement(
+            self,
+            qc_phys: PhysicalQuantumCircuit,
+            shots: int = 1
+    ) -> Result:
         """
-        execute the native quantum circuit without measurements.
+        Execute a physical quantum circuit without measurements.
         
         Parameters
         ----------
-        qc_native : QuantumCircuit
-            quantum circuits for native device.
+        qc_phys : QuantumCircuit
+            Physical uantum circuit.
         shots : int, default 1
-            shots of execute the quantumcircuit.
+            Number of shots.
         
         Returns
         -------
-        res : Result
-            result of execution.
-
+        Result
+             Execution result.
         """
-        if not isinstance(qc_native, QuantumCircuit):
-            raise TypeError("the qc_native must be a QuantumCircuit object.")
+        qc_native = qc_phys.to_qiskit()
         
         num_dots = qc_native.num_qubits
         num_qubits = num_dots // 3
@@ -292,81 +166,76 @@ class EoqSimulator:
         )
         return res
 
-    def execute(self, qc_native: QuantumCircuit, shots: int = 1) -> Result:
+    def execute(self, qc_phys: PhysicalQuantumCircuit, shots: int = 1) -> Result:
         """
-        execute the native quantum circuit.
+        Execute a physical quantum circuit.
         
         Parameters
         ----------
-        qc_native : QuantumCircuit
-            quantum circuits for native device.
+        qc_phys : PhysicalQuantumCircuit
+            Physical quantum circuits.
         shots : int, default 1
-            shots of execute the quantumcircuit.
+            Number of shots.
         
         Returns
         -------
-        res : Result
-            result of execution.
-
+        Result
+            Execution result.
         """
-        if self._qc_is_transpiled(qc_native) is False:
-            raise ValueError("qc_native must be a transpiled native quantum circuit.")
+        if not isinstance(qc_phys, PhysicalQuantumCircuit):
+            raise TypeError("qc_phys must be PhysicalQuantumCircuiit.")
+        if not qc_phys.is_valid():
+            raise ValueError("qc_native must be native.")
+
+        qc_native = qc_phys.to_qiskit()
+        
+        # check the graph connectivity
+        for i, inst in enumerate(qc_native):
+            operation = inst.operation
+            qubits = inst.qubits
+            qid = [q._index for q in qubits]
+            match operation.name:
+                case 'ex' | 'm' | 'sin':
+                    if not self._arch.topology.has_edge(qid[0], qid[1]):
+                        raise ValueError("two quantum dot indices are specified that cannot be acted upon.")
+                case 'reset':
+                    pass
+                case _:
+                    raise ValueError(f"{operation.name} can't be executed because it operate to 2 dots not connected.")
         
         if 'm' in qc_native.count_ops():
-            res = self._execute_measurement(qc_native, shots)
+            res = self._execute_measurement(qc_phys, shots)
         else:
-            res = self._execute_no_measurement(qc_native, shots)
+            res = self._execute_no_measurement(qc_phys, shots)
         return res
         
-    def run(self, qc: QuantumCircuit, optimization_level: int = 0, shots: int = 1, seed: int | None = None) -> Result:
+    def run(
+            self,
+            qc: QuantumCircuit,
+            optimization_level: int = 0,
+            shots: int = 1,
+            seed: int | None = None
+    ) -> Result:
         """
-        run the quantum circuit (transpile and execute).
-        
-        Parameters
-        ----------
-        qc_native : QuantumCircuit
-            quantum circuits for native device.
-        optimization_level : int, default 1
-            optimization level.
-        shots : int, default 1
-            shots of execute the quantumcircuit.
-        seed : int | None, default None
-            seed of random generation.
-        
-        Returns
-        -------
-        res : Result
-            result of execution.
+        Transpile and execute a logical quantum circuit.
 
-        """
-        qc_native = self.transpile(qc, optimization_level = optimization_level, seed = seed)
-        res = self.execute(qc_native, shots)
-        return res
-        
-    def fidelity(self, qc: QuantumCircuit, qc_native: QuantumCircuit) -> float:
-        """
-        fidelity of the quantum circuit execution.
-        
         Parameters
         ----------
         qc : QuantumCircuit
-            quantum circuits.
-        qc_native : QuantumCircuit
-            quantum circuits for native device.
-        
+            Logical quantum circuit.
+        optimization_level : int, default 0
+            Optimization level (0, 1, 2, or 3).
+        shots : int, default 1
+            Number of shots.
+        seed : int or None, default None
+            Random seed.
+
         Returns
         -------
-        fidelity : float
-            fidelity
-
+        Result
+            Execution result.
         """
-        if 'measure' in qc.count_ops():
-            raise ValueError("can't calculate fidelity in quantum circuits that include measurements.")
-        
-        sv_qiskit = Statevector.from_int(0, 2 ** qc.num_qubits).evolve(qc)
-        state_expect = sv_qiskit.reverse_qargs().data
-        
-        res = self.execute(qc_native)
-        
-        fidelity = np.abs(np.vdot(state_expect, res.qstate.logical_qstate)) ** 2
-        return fidelity
+        trans = EoqTranspiler(self._arch)
+        qc_native = trans.transpile(qc, optimization_level = optimization_level, seed = seed)
+        res = self.execute(qc_native, shots)
+        return res

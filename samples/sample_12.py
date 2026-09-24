@@ -1,8 +1,11 @@
-import numpy as np
 import matplotlib.pyplot as plt
-from qiskit import QuantumCircuit
+import numpy as np
 
-from eoqrid import EoqSimulator, ExchangeInteraction
+from eoqrid import (
+    EoqEngine,
+    ExchangeInteraction,
+    PhysicalQuantumCircuit,
+)
 
 a , b = 0, 1
 (a6, a5, a4) = (a * 3, a * 3 + 1, a * 3 + 2)
@@ -44,12 +47,13 @@ args_list.append((ExchangeInteraction(np.pi, 1.0), [a5, a4]))
 args_list.append((ExchangeInteraction(phase_4, 1.0), [a2, a1]))
 
 # get leakage sequence
-eoq = EoqSimulator()
-qc_native = QuantumCircuit(6)
+eoq = EoqEngine(6)
+qc_phys = PhysicalQuantumCircuit(6)
+qc_phys.initialize()
 y = []
 for args in args_list:
-    qc_native.append(*args)
-    leakage = eoq.execute(qc_native).qstate.leakage()
+    qc_phys.append(*args)
+    leakage = eoq.execute(qc_phys).qstate.leakage()
     y.append(leakage)
 x = list(range(len(y)))
 

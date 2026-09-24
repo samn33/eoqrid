@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 from qiskit.circuit import Instruction, QuantumCircuit
+
 
 class Measurement(Instruction):
     """
-    Measurement
+    Measurement instruction.
 
     """
     def __init__(self):

@@ -1,6 +1,7 @@
 from qiskit import QuantumCircuit
 
-from eoqrid import EoqSimulator
+from eoqrid import EoqEngine
+
 
 def main():
 
@@ -10,14 +11,14 @@ def main():
     print("== quantum circuit ==")
     print(qc)
 
-    eoq = EoqSimulator()
-    qc_native = eoq.transpile(qc)
+    eoq = EoqEngine(3)
+    qc_phys = eoq.transpile(qc)
 
     print("== transpiled quantum circuit ==")
-    print(qc_native)
-    print(f"depth = {qc_native.depth()}")
+    print(qc_phys)
+    print(f"depth = {qc_phys.depth()}")
 
-    res = eoq.execute(qc_native)
+    res = eoq.execute(qc_phys)
 
     print("== quantum state (logical) ==")
     res.qstate.draw()

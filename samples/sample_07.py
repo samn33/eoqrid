@@ -1,32 +1,34 @@
 import numpy as np
 from qiskit import QuantumCircuit
 
-from eoqrid import EoqSimulator, ExchangeInteraction
+from eoqrid import EoqEngine, ExchangeInteraction, PhysicalQuantumCircuit
+
 
 def main():
 
-    eoq = EoqSimulator()
+    eoq = EoqEngine(3)
 
     theta = np.arccos(1.0 / 3.0)
-    qc_native = QuantumCircuit(3)
+    qc_phys = PhysicalQuantumCircuit(3)
 
     print("== initial state ==")
-    eoq.execute(qc_native).qstate.draw()
+    eoq.execute(qc_phys).qstate.draw()
 
     print("== native quantum circuit for Pauli-X ==")
-    qc_native.append(ExchangeInteraction(np.pi - theta), [1, 2])
-    qc_native.append(ExchangeInteraction(theta), [0, 1])
-    qc_native.append(ExchangeInteraction(np.pi - theta), [1, 2])
-    print(qc_native)
+    qc_phys.initialize()
+    qc_phys.append(ExchangeInteraction(np.pi - theta), [1, 2])
+    qc_phys.append(ExchangeInteraction(theta), [0, 1])
+    qc_phys.append(ExchangeInteraction(np.pi - theta), [1, 2])
+    print(qc_phys)
 
     print("== final state ==")
-    eoq.execute(qc_native).qstate.draw()
+    eoq.execute(qc_phys).qstate.draw()
 
     qc = QuantumCircuit(1)
     qc.x(0)
 
     print("== fidelity ==")
-    fid = eoq.fidelity(qc, qc_native)
+    fid = eoq.fidelity(qc, qc_phys)
     print(f"fidelity = {fid:.3f}")
     
 if __name__ == "__main__":

@@ -25,7 +25,7 @@ dependencies = [
 	     "networkx>=3.6.1",
 	     "matplotlib>=3.10.9",
 	     "pylatexenc>=2.10",
-	     "qiskit>=2.4.1",
+	     "qiskit>=2.5.2",
 	     "qiskit-aer>=0.17.2",
 ]
 

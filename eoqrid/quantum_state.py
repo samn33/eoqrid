@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import numpy as np
 from qiskit.quantum_info import Statevector
 
@@ -6,37 +7,33 @@ EPS = 1e-8
 
 class QuantumState:
     """
-    Quantum State
+    Representation of a quantum state in exchange-only architecture.
 
     Attributes
     ----------
     num_qubits : int
-        number of quantum bits (logical qubits).
+        Number of logical qubits.
     num_dots : int
-        number of quantum dots (physical qubits).
+        Number of quantum dots (physical qubits).
     statevector : Statevector
-        qiskit Statevector object.
+        Qiskit Statevector object.
     data : np.ndarray
-        numpy array of state vector.
+        NumPy array representing the state vector.
     qiskit_data : np.ndarray
-        numpy array of state vector (qiskit bit order).
+        NumPy array representing the state vector in Qiskit qubit ordering.
     logical_qstate : np.ndarray
-        numpy array of logical quantum state vector.
+        NumPy array representing the logical quantum state vector.
     physical_qstate : np.ndarray
-        numpy array of physical quantum state vector.
-    
+        NumPy array representing the physical quantum state vector.
     """
     def __init__(self, num_qubits: int) -> None:
         """
+        Initialize the quantum state.
+
         Parameters
         ----------
         num_qubits : int
-            number of quantum bits (logical qubits).
-
-        Returns
-        -------
-        None
-        
+            Number of logical qubits.
         """
         self._num_qubits = num_qubits
         self._num_dots = num_qubits * 3
@@ -67,7 +64,8 @@ class QuantumState:
                 base_tmp = np.kron(self._base_element[i], base_tmp)
             self._base.append(base_tmp)
         
-        self._statevector = Statevector(self._base[0])
+        #self._statevector = Statevector(self._base[0])
+        self._statevector = Statevector.from_label(f"{'0' * self._num_dots}")
 
     @property
     def num_qubits(self) -> int:
@@ -105,55 +103,42 @@ class QuantumState:
 
     def _logical_qstate(self) -> np.ndarray:
         """
-        get the logical state.
-
-        Parameters
-        ----------
-        None
+        Get the logical quantum state vector.
 
         Returns
         -------
         np.ndarray
-            numpy array of logical quantum state vector.
-
+            NumPy array representing the logical quantum state vector.
         """
         return np.array([np.vdot(base, self._statevector.data) for base in self._base])
 
     def _physical_qstate(self) -> np.ndarray:
         """
-        get the physical state.
-
-        Parameters
-        ----------
-        None
+        Get the physical quantum state vector.
 
         Returns
         -------
         np.ndarray
-            numpy array of physical quantum state vector.
-
+            NumPy array representing the physical quantum state vector.
         """
         return self._statevector.reverse_qargs().data
 
     def draw(self, ignore_zeros=False, preal=0, mode: str = "logical") -> None:
         """
-        draw the quantum state
-        (elements of the state vector and probabilities).
-        
+        Draw the quantum state components.
+
+        Prints the elements of the state vector along with their probabilities.
+
         Parameters
         ----------
         ignore_zeros : bool, default False
-            if True, only non-zero amplitudes are printed.
+            If True, prints only non-zero amplitudes.
         preal : int, default 0
-            state id to make positive real amplitude.
-            (if -1 is set, do not go out the global phase factor)
-        mode : str
-            logical or physical.
-        
-        Returns
-        -------
-        None
-    
+            State index used to make its amplitude a positive real number.
+            If -1, the global phase factor is not adjusted.
+        mode : {'logical', 'physical'}, default 'logical'
+            Quantum state representation mode to draw.
+
         Examples
         --------
         >>> qstate.draw()
@@ -165,7 +150,6 @@ class QuantumState:
         >>> qstate.draw(ignore_zeros=True)
         c[00] = +0.7071+0.0000*i : 0.5000 |++++++
         c[11] = +0.7071+0.0000*i : 0.5000 |++++++
-    
         """
         if mode == "logical":
             vec = self.logical_qstate
@@ -193,25 +177,23 @@ class QuantumState:
             if ignore_zeros is True and absval2 < EPS:
                 continue
             else:
-                print("c[{}] = {:+.4f}{:+.4f}*i : {:.4f} {}"
-                      .format(bits, v.real, v.imag, abs(v)**2, bar_str))
+                print(f"c[{bits}] = {v.real:+.4f}{v.imag:+.4f}*i : {abs(v)**2:.4f} {bar_str}"
+                      )
 
     def leakage(self) -> float:
         """
-        get the leakage for the quantum state.
-
-        Parameters
-        ----------
-        None
+        Get the leakage of the quantum state.
 
         Returns
         -------
         float
-            leakage
-
+            Leakage of the quantum state.
         """
         proj_qstate = np.zeros(len(self.physical_qstate), dtype=complex)
         for i, b in enumerate(self._base):
             proj_qstate = proj_qstate + (self.logical_qstate[i] * b) # qiskit_order
 
-        return 1.0 - abs(np.vdot(self.qiskit_data, proj_qstate))
+        proj_qstate = proj_qstate / np.linalg.norm(proj_qstate)
+
+        qstate_data = self.qiskit_data / np.linalg.norm(self.qiskit_data)
+        return 1.0 - abs(np.vdot(qstate_data, proj_qstate))
