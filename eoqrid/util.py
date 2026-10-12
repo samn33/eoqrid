@@ -28,6 +28,7 @@ def plot_qc(qc: QuantumCircuit | PhysicalQuantumCircuit) -> None:
             "ex": 'darkred',
             "m": 'darkgreen',
             "sin": 'dimgrey',
+            "up": 'darkgrey',
         }
     }
     qc_plot.draw('mpl', style=style)

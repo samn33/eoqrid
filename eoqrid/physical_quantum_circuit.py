@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from qiskit import QuantumCircuit
-from qiskit.circuit.library import Reset
 
-from eoqrid.singlet import Singlet
+from eoqrid.reset_singlet import ResetSinglet
+from eoqrid.reset_up import ResetUp
 
 
 class PhysicalQuantumCircuit:
@@ -43,7 +43,7 @@ class PhysicalQuantumCircuit:
             True if the object is valid, False otherwise.
         """
         for name in self._qc.count_ops():
-            if name != 'ex' and name != 'm' and name != 'sin' and name != 'reset':
+            if name != 'ex' and name != 'm' and name != 'sin' and name != 'up':
                 return False
         return True
 
@@ -65,7 +65,9 @@ class PhysicalQuantumCircuit:
         Selects three quantum dot pairs sequentially starting from the 0th quantum dot,
         and initializes all of them to the singlet state.
         """
+        if self.num_qubits % 3 != 0:
+            raise ValueError("NUmber of qubits must be a multiple of 3.")
         for q in range(self.num_qubits // 3):
             a0, a1, a2 = q * 3, q * 3 + 1, q * 3 + 2
-            self._qc.append(Singlet(), [a0, a1])
-            self._qc.append(Reset(), [a2])
+            self._qc.append(ResetSinglet(), [a0, a1])
+            self._qc.append(ResetUp(), [a2])

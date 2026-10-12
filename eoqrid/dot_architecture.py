@@ -55,8 +55,8 @@ class DotArchitecture:
             raise TypeError("the constructor argument must be a positive integer or a nx.Graph.")
 
     def _check_num_dots(self, num_dots):
-        if num_dots < 0 or (num_dots >= 0 and num_dots % 3 != 0):
-            raise ValueError("number of quantum dots must be a positive and multiple of 3.")
+        if num_dots < 0:
+            raise ValueError("number of quantum dots must be larger than 1.")
 
     def __str__(self) -> str:
         s = f"- nodes: {self._topology.nodes(data='readout')}\n"
@@ -85,7 +85,8 @@ class DotArchitecture:
         bool
             True if the object is valid, False otherwise.
         """
-        if self.num_dots < 0 or (self.num_dots >= 0 and self.num_dots % 3 != 0) or not nx.is_connected(self._topology):
+        #if self.num_dots < 0 or (self.num_dots >= 0 and self.num_dots % 3 != 0) or not nx.is_connected(self._topology):
+        if self.num_dots <= 1 or not nx.is_connected(self._topology):
             return False
         for a, b in self._readout_pairs:
             if not self._topology.has_edge(a, b):

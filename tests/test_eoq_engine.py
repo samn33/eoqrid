@@ -57,20 +57,6 @@ def test_construct_by_topology():
     assert eoq.num_dots == len(eoq.arch.topology)
     assert len(eoq.arch.topology.edges()) == num_edges
 
-def test_exception_num_dots_is_not_multiple_of_3():
-
-    with pytest.raises(ValueError):
-        EoqEngine(4)
-
-    arch = DotArchitecture()
-    arch.add_edge(0, 1)
-    arch.add_edge(1, 2)
-    arch.add_edge(2, 3)
-    arch.add_edge(3, 4)
-
-    with pytest.raises(ValueError):
-        EoqEngine(arch)
-
 def test_exception_arhi_not_connected():
 
     arch = DotArchitecture()

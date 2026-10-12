@@ -66,9 +66,6 @@ def test_construct_and_add_edge():
     assert len(arch.topology.edges()) == num_edges
     assert arch.is_valid()
 
-    arch.add_edge(5, 6)
-    assert not arch.is_valid()
-    
 def test_readout_pairs():
 
     arch = DotArchitecture()
@@ -86,20 +83,6 @@ def test_readout_pairs():
     assert not arch.is_readout_pair(1, 0)
     assert not arch.is_readout_pair(0, 3)
     
-def test_exception_num_dots_is_not_multiple_of_3():
-
-    with pytest.raises(ValueError):
-        DotArchitecture(4)
-
-    topo = nx.Graph()
-    topo.add_edge(0, 1)
-    topo.add_edge(1, 2)
-    topo.add_edge(2, 3)
-    topo.add_edge(3, 4)
-
-    with pytest.raises(ValueError):
-        DotArchitecture(topo)
-
 def test_exception_num_dots_is_negative():
 
     with pytest.raises(ValueError):

@@ -8,7 +8,7 @@ import networkx as nx
 import numpy as np
 from qiskit import QuantumCircuit, transpile
 from qiskit.circuit.equivalence_library import SessionEquivalenceLibrary as sel
-from qiskit.circuit.library import Reset, SwapGate
+from qiskit.circuit.library import SwapGate
 from qiskit.transpiler import PassManager, Target
 from qiskit.transpiler.passes import BasisTranslator
 
@@ -16,7 +16,8 @@ from eoqrid.dot_architecture import DotArchitecture
 from eoqrid.exchange_interaction import ExchangeInteraction
 from eoqrid.measurement import Measurement
 from eoqrid.physical_quantum_circuit import PhysicalQuantumCircuit
-from eoqrid.singlet import Singlet
+from eoqrid.reset_singlet import ResetSinglet
+from eoqrid.reset_up import ResetUp
 
 EPS = 1e-8
 
@@ -59,7 +60,7 @@ class EoqTranspiler:
             True if the quantum circuit is logical, False otherwise.
         """
         for name in qc.count_ops():
-            if name == 'ex' or name == 'm' or name == 'sin' or name == 'reset':
+            if name == 'ex' or name == 'm' or name == 'sin' or name == 'up':
                 return False
         return True
         
@@ -88,7 +89,7 @@ class EoqTranspiler:
         qc_native = QuantumCircuit(self._num_dots, self._num_clbits)
 
         for q in range(self._num_qubits):
-            qc_native = qc_native.compose(self._singlet(q))
+            qc_native = qc_native.compose(self._reset_singlet(q))
         
         for inst in pm.run(qc):
             operation = inst.operation
@@ -234,18 +235,20 @@ class EoqTranspiler:
         for a, b in list(self._arch.topology.edges()):
             coupling_list.append((a, b))
             coupling_list.append((b, a))
-        
-        target = Target(num_qubits=self._num_dots)
-        ex_properties = {(a, b): None for (a, b) in coupling_list} | {(b, a): None for (a, b) in coupling_list}
-        m_properties = ex_properties
-        ini_properties = ex_properties
 
+        ex_properties = {(a, b): None for (a, b) in coupling_list} | {(b, a): None for (a, b) in coupling_list}
+        sw_properties = {(a, b): None for (a, b) in coupling_list} | {(b, a): None for (a, b) in coupling_list}
+        m_properties = {(a, b): None for (a, b) in coupling_list} | {(b, a): None for (a, b) in coupling_list}
+        sin_properties = {(a, b): None for (a, b) in coupling_list} | {(b, a): None for (a, b) in coupling_list}
+        up_properties = {(i,): None for i in range(self._arch.num_dots)}
+
+        target = Target(num_qubits=self._num_dots)
         target.add_instruction(ExchangeInteraction(1.0, 1.0), properties=ex_properties)
-        target.add_instruction(SwapGate(), properties=ex_properties)
+        target.add_instruction(SwapGate(), properties=sw_properties)
         target.add_instruction(Measurement(), properties=m_properties)
-        target.add_instruction(Singlet(), properties=ini_properties)
-        target.add_instruction(Reset())
-         
+        target.add_instruction(ResetSinglet(), properties=sin_properties)
+        target.add_instruction(ResetUp(), properties=up_properties)
+
         initial_layout = list(range(self._num_dots))
         if seed is not None:
             qc_native = transpile(
@@ -281,9 +284,9 @@ class EoqTranspiler:
                 case 'ex':
                     qc_native_out.append(ExchangeInteraction(params[0], params[1]), [qid[0], qid[1]], [])
                 case 'sin':
-                    qc_native_out.append(Singlet(), [qid[0], qid[1]])
-                case 'reset':
-                    qc_native_out.append(Reset(), [qid[0]])
+                    qc_native_out.append(ResetSinglet(), [qid[0], qid[1]])
+                case 'up':
+                    qc_native_out.append(ResetUp(), [qid[0]])
                 case 'm':
                     swaps, readout_pair = self._find_minimum_swaps(tuple(qid))
                     for a, b in swaps:
@@ -547,11 +550,11 @@ class EoqTranspiler:
         a0, a1, a2 = q * 3, q * 3 + 1, q * 3 + 2
         qc_native = QuantumCircuit(self._num_dots, self._num_clbits)
         qc_native.append(Measurement(), [a0, a1], [c])
-        qc_native.append(Singlet(), [a0, a1])
-        qc_native.append(Reset(), [a2])
+        qc_native.append(ResetSinglet(), [a0, a1])
+        qc_native.append(ResetUp(), [a2])
         return qc_native
 
-    def _singlet(self, q: int) -> QuantumCircuit:
+    def _reset_singlet(self, q: int) -> QuantumCircuit:
         """
         Generate a native quantum circuit for preparing a singlet state.
 
@@ -567,6 +570,24 @@ class EoqTranspiler:
         """
         a0, a1, a2 = q * 3, q * 3 + 1, q * 3 + 2
         qc_native = QuantumCircuit(self._num_dots, self._num_clbits)
-        qc_native.append(Singlet(), [a0, a1])
-        qc_native.append(Reset(), [a2])
+        qc_native.append(ResetSinglet(), [a0, a1])
+        qc_native.append(ResetUp(), [a2])
+        return qc_native
+
+    def _reset_up(self, i: int) -> QuantumCircuit:
+        """
+        Generate a native quantum circuit for preparing a singlet state.
+
+        Parameters
+        ----------
+        i : int
+            Index of the dot.
+
+        Returns
+        -------
+        QuantumCircuit
+            Native quantum circuit implementing up state preparation.
+        """
+        qc_native = QuantumCircuit(self._num_dots, self._num_clbits)
+        qc_native.append(ResetUp(), [i])
         return qc_native
