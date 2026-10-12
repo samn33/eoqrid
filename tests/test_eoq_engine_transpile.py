@@ -17,7 +17,8 @@ from eoqrid.util import random_arch, random_quantum_circuit
 def is_valid(arch: DotArchitecture, qc_in: QuantumCircuit, qc_out: PhysicalQuantumCircuit) -> bool:
 
     for name in qc_out.count_ops():
-        if name not in ('ex', 'm', 'sin', 'reset'):
+        #if name not in ('ex', 'm', 'sin', 'reset'):
+        if name not in ('ex', 'm', 'sin', 'up'):
             raise ValueError("qc_in is invalid.")
 
     if arch.topology is None:
@@ -26,7 +27,8 @@ def is_valid(arch: DotArchitecture, qc_in: QuantumCircuit, qc_out: PhysicalQuant
     for i, inst in enumerate(qc_out.to_qiskit()):
         name = inst.operation.name
         qid = [q._index for q in inst.qubits]
-        if name == 'reset':
+        #if name == 'reset':
+        if name == 'up':
             continue
         elif name == 'm':
             if qid in arch.readout_pairs:

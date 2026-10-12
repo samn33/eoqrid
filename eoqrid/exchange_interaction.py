@@ -10,6 +10,8 @@ class ExchangeInteraction(Gate):
     """
     def __init__(self, t: float, J: float = 1.0, label: str | None = None):
         super().__init__(name="ex", num_qubits=2, params=[t, J], label=label)
+        #self.duration = t
+        #self.unit = "ns"
 
     def _define(self):
         duration = self.params[0]

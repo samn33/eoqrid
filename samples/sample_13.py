@@ -30,13 +30,14 @@ def main():
     print(qc)
 
     eoq = EoqEngine(arch)
-    qc_phys = eoq.transpile(qc)
+    qc_phys = eoq.transpile(qc, seed=123)
     print(qc_phys)
 
     plot_qc(qc_phys)
 
     res = eoq.execute(qc_phys, shots=10)
     print(res)
+    print(f"depth = {qc_phys.depth()}")
     
 if __name__ == "__main__":
     main()

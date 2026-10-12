@@ -2,9 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-import numpy as np
 from qiskit import QuantumCircuit, transpile
-from qiskit.quantum_info import Statevector
 from qiskit_aer import AerSimulator
 
 from eoqrid.dot_architecture import DotArchitecture
@@ -77,7 +75,7 @@ class EoqSimulator:
         num_qubits = num_dots // 3
         num_clbits = qc_native.num_clbits
         
-        qstate = QuantumState(num_qubits)
+        qstate = QuantumState(num_dots)
         backend = AerSimulator(method='statevector')
         qc_t = QuantumCircuit(num_dots, num_clbits)
         qc_t.set_statevector(qstate.statevector)
@@ -133,28 +131,13 @@ class EoqSimulator:
         num_qubits = num_dots // 3
         num_clbits = qc_native.num_clbits
 
-        qstate = QuantumState(num_qubits)
-
-        qstate.statevector = qstate.statevector.evolve(qc_native)
-
         if qc_native.layout is None:
-            logical_indices = list(range(num_dots))
+            index_layout = list(range(num_dots))
         else:
-            logical_indices = qc_native.layout.final_index_layout()
+            index_layout = qc_native.layout.final_index_layout()
 
-        data = np.zeros(2 ** num_dots, dtype=complex)
-        for p_id in range(2 ** num_dots):
-            b_str = f"{p_id:0{num_dots}b}"
-            b_list = list(map(int, list(b_str)))[::-1]
-            bb_list = [0] * num_dots
-            l_id = 0
-            for k in range(num_dots):
-                bb_list[logical_indices[k]] = b_list[k]
-                if b_list[k] == 1:
-                    l_id += (1 << logical_indices[k])
-            data[p_id] = qstate.statevector.data[l_id]
-    
-        qstate.statevector = Statevector(data)
+        qstate = QuantumState(num_dots, index_layout=index_layout)
+        qstate.statevector = qstate.statevector.evolve(qc_native)
 
         res = Result(
             num_qubits = num_qubits,
@@ -198,7 +181,7 @@ class EoqSimulator:
                 case 'ex' | 'm' | 'sin':
                     if not self._arch.topology.has_edge(qid[0], qid[1]):
                         raise ValueError("two quantum dot indices are specified that cannot be acted upon.")
-                case 'reset':
+                case 'up':
                     pass
                 case _:
                     raise ValueError(f"{operation.name} can't be executed because it operate to 2 dots not connected.")
