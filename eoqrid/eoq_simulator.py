@@ -169,6 +169,8 @@ class EoqSimulator:
             raise TypeError("qc_phys must be PhysicalQuantumCircuiit.")
         if not qc_phys.is_valid():
             raise ValueError("qc_native must be native.")
+        if qc_phys.num_qubits != max(self._arch.topology.nodes) + 1:
+            raise ValueError("the number of nodes in the topology and the number of dots do not match.")
 
         qc_native = qc_phys.to_qiskit()
         

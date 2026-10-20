@@ -1,0 +1,1511 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eoqrid package &mdash; eoqrid 0.3.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=71d9d8e6"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Python API" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            eoqrid
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">eoqrid package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.dot_architecture">eoqrid.dot_architecture module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture"><code class="docutils literal notranslate"><span class="pre">DotArchitecture</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture.topology"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.topology</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture.num_dots"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture.readout_pairs"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.readout_pairs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture.add_edge"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.add_edge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture.add_readout_pair"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.add_readout_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture.is_readout_pair"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.is_readout_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture.is_valid"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.readout_pairs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.topology</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.eoq_engine">eoqrid.eoq_engine module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine"><code class="docutils literal notranslate"><span class="pre">EoqEngine</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.arch"><code class="docutils literal notranslate"><span class="pre">EoqEngine.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.num_dots"><code class="docutils literal notranslate"><span class="pre">EoqEngine.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.transpiler"><code class="docutils literal notranslate"><span class="pre">EoqEngine.transpiler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.simulator"><code class="docutils literal notranslate"><span class="pre">EoqEngine.simulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">EoqEngine.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.execute"><code class="docutils literal notranslate"><span class="pre">EoqEngine.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.fidelity"><code class="docutils literal notranslate"><span class="pre">EoqEngine.fidelity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">EoqEngine.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.run"><code class="docutils literal notranslate"><span class="pre">EoqEngine.run()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">EoqEngine.simulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.transpile"><code class="docutils literal notranslate"><span class="pre">EoqEngine.transpile()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">EoqEngine.transpiler</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.eoq_simulator">eoqrid.eoq_simulator module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator"><code class="docutils literal notranslate"><span class="pre">EoqSimulator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.arch"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.execute"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.execute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.num_dots"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.num_qubits"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.run"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.eoq_transpiler">eoqrid.eoq_transpiler module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.eoq_transpiler.EoqTranspiler"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_transpiler.EoqTranspiler.arch"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_transpiler.EoqTranspiler.transpile"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler.transpile()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.exchange_interaction">eoqrid.exchange_interaction module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.exchange_interaction.ExchangeInteraction"><code class="docutils literal notranslate"><span class="pre">ExchangeInteraction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.measurement">eoqrid.measurement module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.measurement.Measurement"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.physical_quantum_circuit">eoqrid.physical_quantum_circuit module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.qc"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.qc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.initialize"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.initialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.is_valid"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.to_qiskit"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.to_qiskit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.quantum_state">eoqrid.quantum_state module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState"><code class="docutils literal notranslate"><span class="pre">QuantumState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.num_qubits"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.num_dots"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.statevector"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.logical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.physical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.draw"><code class="docutils literal notranslate"><span class="pre">QuantumState.draw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.index_layout"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.leakage"><code class="docutils literal notranslate"><span class="pre">QuantumState.leakage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.reset_singlet">eoqrid.reset_singlet module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.reset_singlet.ResetSinglet"><code class="docutils literal notranslate"><span class="pre">ResetSinglet</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.reset_up">eoqrid.reset_up module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.reset_up.ResetUp"><code class="docutils literal notranslate"><span class="pre">ResetUp</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.result">eoqrid.result module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.result.Result"><code class="docutils literal notranslate"><span class="pre">Result</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.num_qubits"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.num_clbits"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.num_dots"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.qstate"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.m_last"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.freq"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.singlet">eoqrid.singlet module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.singlet.Singlet"><code class="docutils literal notranslate"><span class="pre">Singlet</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.util">eoqrid.util module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.plot_arch"><code class="docutils literal notranslate"><span class="pre">plot_arch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.plot_graph"><code class="docutils literal notranslate"><span class="pre">plot_graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.plot_qc"><code class="docutils literal notranslate"><span class="pre">plot_qc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.random_arch"><code class="docutils literal notranslate"><span class="pre">random_arch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.random_quantum_circuit"><code class="docutils literal notranslate"><span class="pre">random_quantum_circuit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.DotArchitecture"><code class="docutils literal notranslate"><span class="pre">DotArchitecture</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.topology"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.topology</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.num_dots"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.readout_pairs"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.readout_pairs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.add_edge"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.add_edge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.add_readout_pair"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.add_readout_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.is_readout_pair"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.is_readout_pair()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.is_valid"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.readout_pairs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.topology</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.ExchangeInteraction"><code class="docutils literal notranslate"><span class="pre">ExchangeInteraction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.Measurement"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.QuantumState"><code class="docutils literal notranslate"><span class="pre">QuantumState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.num_qubits"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.num_dots"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.statevector"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.logical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.physical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.draw"><code class="docutils literal notranslate"><span class="pre">QuantumState.draw()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.index_layout"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.leakage"><code class="docutils literal notranslate"><span class="pre">QuantumState.leakage()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.ResetSinglet"><code class="docutils literal notranslate"><span class="pre">ResetSinglet</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.ResetUp"><code class="docutils literal notranslate"><span class="pre">ResetUp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.Result"><code class="docutils literal notranslate"><span class="pre">Result</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.num_qubits"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.num_clbits"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.num_dots"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.qstate"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.m_last"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.freq"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">eoqrid</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">eoqrid package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/eoqrid.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="eoqrid-package">
+<h1>eoqrid package<a class="headerlink" href="#eoqrid-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-eoqrid.dot_architecture">
+<span id="eoqrid-dot-architecture-module"></span><h2>eoqrid.dot_architecture module<a class="headerlink" href="#module-eoqrid.dot_architecture" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.dot_architecture.</span></span><span class="sig-name descname"><span class="pre">DotArchitecture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topology</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Graph</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Quantum dot architecture description.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture.topology">
+<span class="sig-name descname"><span class="pre">topology</span></span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture.topology" title="Link to this definition"></a></dt>
+<dd><p>Quantum chip connectivity graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nx.Graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture.readout_pairs">
+<span class="sig-name descname"><span class="pre">readout_pairs</span></span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture.readout_pairs" title="Link to this definition"></a></dt>
+<dd><p>Dot index pairs for readout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[tuple[int, int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture.add_edge" title="Link to this definition"></a></dt>
+<dd><p>Add an undirected edge between two quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – Index of the first quantum dot.</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – Index of the second quantum dot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture.add_readout_pair">
+<span class="sig-name descname"><span class="pre">add_readout_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture.add_readout_pair" title="Link to this definition"></a></dt>
+<dd><p>Add a readout pair for two connected quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – Index of the first measurement dot.</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – Index of the second measurement dot.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If dots <cite>a</cite> and <cite>b</cite> do not exist or are not connected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture.is_readout_pair">
+<span class="sig-name descname"><span class="pre">is_readout_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture.is_readout_pair" title="Link to this definition"></a></dt>
+<dd><p>Check whether a and b form a readout pair.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – Index of the first measurement dot.</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – Index of the second measurement dot.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if <cite>a</cite> and <cite>b</cite> form a readout pair, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.dot_architecture.DotArchitecture.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#eoqrid.dot_architecture.DotArchitecture.is_valid" title="Link to this definition"></a></dt>
+<dd><p>Check whether the object is in a valid state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the object is valid, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id0">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id1">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">readout_pairs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">(</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id2">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">topology</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Graph</span></span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.eoq_engine">
+<span id="eoqrid-eoq-engine-module"></span><h2>eoqrid.eoq_engine module<a class="headerlink" href="#module-eoqrid.eoq_engine" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.eoq_engine.</span></span><span class="sig-name descname"><span class="pre">EoqEngine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Provide an execution engine for exchange-only quantum computing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.arch">
+<span class="sig-name descname"><span class="pre">arch</span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.arch" title="Link to this definition"></a></dt>
+<dd><p>Quantum dot architecture layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture">DotArchitecture</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.transpiler">
+<span class="sig-name descname"><span class="pre">transpiler</span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.transpiler" title="Link to this definition"></a></dt>
+<dd><p>Logical-to-physical quantum circuit transpiler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.eoq_transpiler.EoqTranspiler" title="eoqrid.eoq_transpiler.EoqTranspiler">EoqTranspiler</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.simulator">
+<span class="sig-name descname"><span class="pre">simulator</span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.simulator" title="Link to this definition"></a></dt>
+<dd><p>Quantum circuit simulator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator" title="eoqrid.eoq_simulator.EoqSimulator">EoqSimulator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id3">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc_phys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.execute" title="Link to this definition"></a></dt>
+<dd><p>Execute a physical quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc_phys</strong> (<a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><em>PhysicalQuantumCircuit</em></a>) – Physical quantum circuit.</p></li>
+<li><p><strong>shots</strong> (<em>int</em>) – Number of shots.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Execution result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result">Result</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.fidelity">
+<span class="sig-name descname"><span class="pre">fidelity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qc_phys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.fidelity" title="Link to this definition"></a></dt>
+<dd><p>Calculate the fidelity of a physical quantum circuit execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc</strong> (<em>QuantumCircuit</em>) – Logical quantum circuit.</p></li>
+<li><p><strong>qc_phys</strong> (<a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><em>PhysicalQuantumCircuit</em></a>) – Physical quantum circuit after transpilation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Estimated fidelity between the logical and physical circuits.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id4">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimization_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.run" title="Link to this definition"></a></dt>
+<dd><p>Execute a logical quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc</strong> (<em>QuantumCircuit</em>) – Logical quantum circuit.</p></li>
+<li><p><strong>optimization_level</strong> (<em>int</em><em>, </em><em>default 0</em>) – Optimization level (0, 1, 2, or 3).</p></li>
+<li><p><strong>shots</strong> (<em>int</em><em>, </em><em>default 1</em>) – Number of shots.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Random seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Execution result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result">Result</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id5">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">simulator</span></span><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.transpile">
+<span class="sig-name descname"><span class="pre">transpile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimization_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.transpile" title="Link to this definition"></a></dt>
+<dd><p>Transpile a logical quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc</strong> (<em>QuantumCircuit</em>) – Logical quantum circuit.</p></li>
+<li><p><strong>optimization_level</strong> (<em>int</em><em>, </em><em>default 0</em>) – Optimization level (0, 1, 2, or 3).</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Random seed for transpilation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transpiled physical circuit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit">PhysicalQuantumCircuit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id6">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">transpiler</span></span><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.eoq_simulator">
+<span id="eoqrid-eoq-simulator-module"></span><h2>eoqrid.eoq_simulator module<a class="headerlink" href="#module-eoqrid.eoq_simulator" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.eoq_simulator.</span></span><span class="sig-name descname"><span class="pre">EoqSimulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.eoq_simulator.EoqSimulator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simulator for exchange-only quantum computing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator.arch">
+<span class="sig-name descname"><span class="pre">arch</span></span><a class="headerlink" href="#eoqrid.eoq_simulator.EoqSimulator.arch" title="Link to this definition"></a></dt>
+<dd><p>Quantum dot architecture layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture">DotArchitecture</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id7">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc_phys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_simulator.EoqSimulator.execute" title="Link to this definition"></a></dt>
+<dd><p>Execute a physical quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc_phys</strong> (<a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><em>PhysicalQuantumCircuit</em></a>) – Physical quantum circuits.</p></li>
+<li><p><strong>shots</strong> (<em>int</em><em>, </em><em>default 1</em>) – Number of shots.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Execution result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result">Result</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator.num_dots">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#eoqrid.eoq_simulator.EoqSimulator.num_dots" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator.num_qubits">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#eoqrid.eoq_simulator.EoqSimulator.num_qubits" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimization_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_simulator.EoqSimulator.run" title="Link to this definition"></a></dt>
+<dd><p>Transpile and execute a logical quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc</strong> (<em>QuantumCircuit</em>) – Logical quantum circuit.</p></li>
+<li><p><strong>optimization_level</strong> (<em>int</em><em>, </em><em>default 0</em>) – Optimization level (0, 1, 2, or 3).</p></li>
+<li><p><strong>shots</strong> (<em>int</em><em>, </em><em>default 1</em>) – Number of shots.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Random seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Execution result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result">Result</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.eoq_transpiler">
+<span id="eoqrid-eoq-transpiler-module"></span><h2>eoqrid.eoq_transpiler module<a class="headerlink" href="#module-eoqrid.eoq_transpiler" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.eoq_transpiler.EoqTranspiler">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.eoq_transpiler.</span></span><span class="sig-name descname"><span class="pre">EoqTranspiler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.eoq_transpiler.EoqTranspiler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Transpiler for exchange-only quantum computing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.eoq_transpiler.EoqTranspiler.arch">
+<span class="sig-name descname"><span class="pre">arch</span></span><a class="headerlink" href="#eoqrid.eoq_transpiler.EoqTranspiler.arch" title="Link to this definition"></a></dt>
+<dd><p>Quantum dot architecture layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture">DotArchitecture</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id8">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_transpiler.EoqTranspiler.transpile">
+<span class="sig-name descname"><span class="pre">transpile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimization_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_transpiler.EoqTranspiler.transpile" title="Link to this definition"></a></dt>
+<dd><p>Transpile a logical quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc</strong> (<em>QuantumCircuit</em>) – Logical quantum circuit.</p></li>
+<li><p><strong>optimization_level</strong> (<em>int</em><em>, </em><em>default 0</em>) – Optimization level (0, 1, 2, or 3).</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Random seed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transpiled physical quantum circuit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit">PhysicalQuantumCircuit</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.exchange_interaction">
+<span id="eoqrid-exchange-interaction-module"></span><h2>eoqrid.exchange_interaction module<a class="headerlink" href="#module-eoqrid.exchange_interaction" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.exchange_interaction.ExchangeInteraction">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.exchange_interaction.</span></span><span class="sig-name descname"><span class="pre">ExchangeInteraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.exchange_interaction.ExchangeInteraction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Gate</span></code></p>
+<p>Exchange interaction gate.</p>
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.measurement">
+<span id="eoqrid-measurement-module"></span><h2>eoqrid.measurement module<a class="headerlink" href="#module-eoqrid.measurement" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.measurement.Measurement">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.measurement.</span></span><span class="sig-name descname"><span class="pre">Measurement</span></span><a class="headerlink" href="#eoqrid.measurement.Measurement" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
+<p>Measurement instruction.</p>
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.physical_quantum_circuit">
+<span id="eoqrid-physical-quantum-circuit-module"></span><h2>eoqrid.physical_quantum_circuit module<a class="headerlink" href="#module-eoqrid.physical_quantum_circuit" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.physical_quantum_circuit.</span></span><span class="sig-name descname"><span class="pre">PhysicalQuantumCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Physical quantum circuit in exchange-only architecture.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.qc">
+<span class="sig-name descname"><span class="pre">qc</span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.qc" title="Link to this definition"></a></dt>
+<dd><p>Physical quantum circuit object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QuantumCircuit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.initialize" title="Link to this definition"></a></dt>
+<dd><p>Initialize the physical quantum circuit.</p>
+<p class="rubric">Notes</p>
+<p>Selects three quantum dot pairs sequentially starting from the 0th quantum dot,
+and initializes all of them to the singlet state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.is_valid" title="Link to this definition"></a></dt>
+<dd><p>Check whether the object is in a valid state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the object is valid, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.to_qiskit">
+<span class="sig-name descname"><span class="pre">to_qiskit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QuantumCircuit</span></span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.to_qiskit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.quantum_state">
+<span id="eoqrid-quantum-state-module"></span><h2>eoqrid.quantum_state module<a class="headerlink" href="#module-eoqrid.quantum_state" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.quantum_state.</span></span><span class="sig-name descname"><span class="pre">QuantumState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Representation of a quantum state in exchange-only architecture.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.num_qubits">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.num_qubits" title="Link to this definition"></a></dt>
+<dd><p>Number of logical qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots (physical qubits).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.statevector">
+<span class="sig-name descname"><span class="pre">statevector</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.statevector" title="Link to this definition"></a></dt>
+<dd><p>Qiskit Statevector object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Statevector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.logical_qstate">
+<span class="sig-name descname"><span class="pre">logical_qstate</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.logical_qstate" title="Link to this definition"></a></dt>
+<dd><p>NumPy array representing the logical quantum state vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.physical_qstate">
+<span class="sig-name descname"><span class="pre">physical_qstate</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.physical_qstate" title="Link to this definition"></a></dt>
+<dd><p>NumPy array representing the physical quantum state vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignore_zeros</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'logical'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.draw" title="Link to this definition"></a></dt>
+<dd><p>Draw the quantum state components.</p>
+<p>Prints the elements of the state vector along with their probabilities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ignore_zeros</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, prints only non-zero amplitudes.</p></li>
+<li><p><strong>preal</strong> (<em>int</em><em>, </em><em>default 0</em>) – State index used to make its amplitude a positive real number.
+If -1, the global phase factor is not adjusted.</p></li>
+<li><p><strong>mode</strong> (<em>{'logical'</em><em>, </em><em>'physical'}</em><em>, </em><em>default 'logical'</em>) – Quantum state representation mode to draw.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">qstate</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="go">c[00] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+<span class="go">c[01] = +0.0000+0.0000*i : 0.0000 |</span>
+<span class="go">c[10] = +0.0000+0.0000*i : 0.0000 |</span>
+<span class="go">c[11] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+<span class="go">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qstate</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">ignore_zeros</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">c[00] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+<span class="go">c[11] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.index_layout">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.index_layout" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.leakage">
+<span class="sig-name descname"><span class="pre">leakage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.leakage" title="Link to this definition"></a></dt>
+<dd><p>Get the leakage of the quantum state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Leakage of the quantum state.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id9">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">logical_qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id10">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id11">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id12">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">statevector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Statevector</span></span><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.reset_singlet">
+<span id="eoqrid-reset-singlet-module"></span><h2>eoqrid.reset_singlet module<a class="headerlink" href="#module-eoqrid.reset_singlet" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.reset_singlet.ResetSinglet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.reset_singlet.</span></span><span class="sig-name descname"><span class="pre">ResetSinglet</span></span><a class="headerlink" href="#eoqrid.reset_singlet.ResetSinglet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
+<p>Singlet state preparation.</p>
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.reset_up">
+<span id="eoqrid-reset-up-module"></span><h2>eoqrid.reset_up module<a class="headerlink" href="#module-eoqrid.reset_up" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.reset_up.ResetUp">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.reset_up.</span></span><span class="sig-name descname"><span class="pre">ResetUp</span></span><a class="headerlink" href="#eoqrid.reset_up.ResetUp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
+<p>Singlet state preparation.</p>
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.result">
+<span id="eoqrid-result-module"></span><h2>eoqrid.result module<a class="headerlink" href="#module-eoqrid.result" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.result.Result">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.result.</span></span><span class="sig-name descname"><span class="pre">Result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_clbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qstate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">defaultdict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.result.Result" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Execution result of a quantum circuit or simulation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.result.Result.num_qubits">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#eoqrid.result.Result.num_qubits" title="Link to this definition"></a></dt>
+<dd><p>Number of logical qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.result.Result.num_clbits">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><a class="headerlink" href="#eoqrid.result.Result.num_clbits" title="Link to this definition"></a></dt>
+<dd><p>Number of classical bits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.result.Result.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.result.Result.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots (physical qubits).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.result.Result.qstate">
+<span class="sig-name descname"><span class="pre">qstate</span></span><a class="headerlink" href="#eoqrid.result.Result.qstate" title="Link to this definition"></a></dt>
+<dd><p>Quantum state object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState">QuantumState</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.result.Result.m_last">
+<span class="sig-name descname"><span class="pre">m_last</span></span><a class="headerlink" href="#eoqrid.result.Result.m_last" title="Link to this definition"></a></dt>
+<dd><p>Most recent measurement outcome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.result.Result.freq">
+<span class="sig-name descname"><span class="pre">freq</span></span><a class="headerlink" href="#eoqrid.result.Result.freq" title="Link to this definition"></a></dt>
+<dd><p>Measurement frequency distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>defaultdict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">freq</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">defaultdict</span></span><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">m_last</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.singlet">
+<span id="eoqrid-singlet-module"></span><h2>eoqrid.singlet module<a class="headerlink" href="#module-eoqrid.singlet" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.singlet.Singlet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.singlet.</span></span><span class="sig-name descname"><span class="pre">Singlet</span></span><a class="headerlink" href="#eoqrid.singlet.Singlet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
+<p>Singlet state preparation.</p>
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.util">
+<span id="eoqrid-util-module"></span><h2>eoqrid.util module<a class="headerlink" href="#module-eoqrid.util" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="eoqrid.util.plot_arch">
+<span class="sig-prename descclassname"><span class="pre">eoqrid.util.</span></span><span class="sig-name descname"><span class="pre">plot_arch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.util.plot_arch" title="Link to this definition"></a></dt>
+<dd><p>Plot the quantum dot architecture layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>arch</strong> (<a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><em>DotArchitecture</em></a>) – Quantum dot architecture layout.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eoqrid.util.plot_graph">
+<span class="sig-prename descclassname"><span class="pre">eoqrid.util.</span></span><span class="sig-name descname"><span class="pre">plot_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Graph</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.util.plot_graph" title="Link to this definition"></a></dt>
+<dd><p>Plot the graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eoqrid.util.plot_qc">
+<span class="sig-prename descclassname"><span class="pre">eoqrid.util.</span></span><span class="sig-name descname"><span class="pre">plot_qc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.util.plot_qc" title="Link to this definition"></a></dt>
+<dd><p>Plot the quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>qc</strong> (<em>QuantumCircuit</em><em> or </em><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><em>PhysicalQuantumCircuit</em></a>) – Logical or physical quantum circuit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eoqrid.util.random_arch">
+<span class="sig-prename descclassname"><span class="pre">eoqrid.util.</span></span><span class="sig-name descname"><span class="pre">random_arch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_readout_pairs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span></span><a class="headerlink" href="#eoqrid.util.random_arch" title="Link to this definition"></a></dt>
+<dd><p>Generate a random quantum dot architecture layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – Number of nodes (quantum dots).</p></li>
+<li><p><strong>m</strong> (<em>int</em>) – Number of edges (couplings between dots, where m &gt;= n - 1).</p></li>
+<li><p><strong>num_readout_pairs</strong> (<em>int</em><em>, </em><em>default 0</em>) – Number of readout pairs.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Random seed for generation reproducibility.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Randomized quantum dot architecture layout.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture">DotArchitecture</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eoqrid.util.random_quantum_circuit">
+<span class="sig-prename descclassname"><span class="pre">eoqrid.util.</span></span><span class="sig-name descname"><span class="pre">random_quantum_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_measurements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QuantumCircuit</span></span></span><a class="headerlink" href="#eoqrid.util.random_quantum_circuit" title="Link to this definition"></a></dt>
+<dd><p>Generate a random quantum circuit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_qubits</strong> (<em>int</em>) – Number of logical qubits.</p></li>
+<li><p><strong>depth</strong> (<em>int</em>) – Depth of the quantum circuit.</p></li>
+<li><p><strong>num_measurements</strong> (<em>int</em><em>, </em><em>default 0</em>) – Number of measurements.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>default None</em>) – Random seed for circuit generation reproducibility.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Randomized quantum circuit.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QuantumCircuit</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-eoqrid">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-eoqrid" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">DotArchitecture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topology</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Graph</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.DotArchitecture" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Quantum dot architecture description.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture.topology">
+<span class="sig-name descname"><span class="pre">topology</span></span><a class="headerlink" href="#eoqrid.DotArchitecture.topology" title="Link to this definition"></a></dt>
+<dd><p>Quantum chip connectivity graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>nx.Graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.DotArchitecture.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture.readout_pairs">
+<span class="sig-name descname"><span class="pre">readout_pairs</span></span><a class="headerlink" href="#eoqrid.DotArchitecture.readout_pairs" title="Link to this definition"></a></dt>
+<dd><p>Dot index pairs for readout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[tuple[int, int]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.DotArchitecture.add_edge" title="Link to this definition"></a></dt>
+<dd><p>Add an undirected edge between two quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – Index of the first quantum dot.</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – Index of the second quantum dot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture.add_readout_pair">
+<span class="sig-name descname"><span class="pre">add_readout_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.DotArchitecture.add_readout_pair" title="Link to this definition"></a></dt>
+<dd><p>Add a readout pair for two connected quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – Index of the first measurement dot.</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – Index of the second measurement dot.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If dots <cite>a</cite> and <cite>b</cite> do not exist or are not connected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture.is_readout_pair">
+<span class="sig-name descname"><span class="pre">is_readout_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#eoqrid.DotArchitecture.is_readout_pair" title="Link to this definition"></a></dt>
+<dd><p>Check whether a and b form a readout pair.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<em>int</em>) – Index of the first measurement dot.</p></li>
+<li><p><strong>b</strong> (<em>int</em>) – Index of the second measurement dot.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if <cite>a</cite> and <cite>b</cite> form a readout pair, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.DotArchitecture.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#eoqrid.DotArchitecture.is_valid" title="Link to this definition"></a></dt>
+<dd><p>Check whether the object is in a valid state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the object is valid, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id19">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id20">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">readout_pairs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">(</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id21">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">topology</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Graph</span></span><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.ExchangeInteraction">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">ExchangeInteraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.ExchangeInteraction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Gate</span></code></p>
+<p>Exchange interaction gate.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.Measurement">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">Measurement</span></span><a class="headerlink" href="#eoqrid.Measurement" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
+<p>Measurement instruction.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.QuantumState">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">QuantumState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.QuantumState" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Representation of a quantum state in exchange-only architecture.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.num_qubits">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#eoqrid.QuantumState.num_qubits" title="Link to this definition"></a></dt>
+<dd><p>Number of logical qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.QuantumState.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots (physical qubits).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.statevector">
+<span class="sig-name descname"><span class="pre">statevector</span></span><a class="headerlink" href="#eoqrid.QuantumState.statevector" title="Link to this definition"></a></dt>
+<dd><p>Qiskit Statevector object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Statevector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.logical_qstate">
+<span class="sig-name descname"><span class="pre">logical_qstate</span></span><a class="headerlink" href="#eoqrid.QuantumState.logical_qstate" title="Link to this definition"></a></dt>
+<dd><p>NumPy array representing the logical quantum state vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.physical_qstate">
+<span class="sig-name descname"><span class="pre">physical_qstate</span></span><a class="headerlink" href="#eoqrid.QuantumState.physical_qstate" title="Link to this definition"></a></dt>
+<dd><p>NumPy array representing the physical quantum state vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignore_zeros</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'logical'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.QuantumState.draw" title="Link to this definition"></a></dt>
+<dd><p>Draw the quantum state components.</p>
+<p>Prints the elements of the state vector along with their probabilities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ignore_zeros</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, prints only non-zero amplitudes.</p></li>
+<li><p><strong>preal</strong> (<em>int</em><em>, </em><em>default 0</em>) – State index used to make its amplitude a positive real number.
+If -1, the global phase factor is not adjusted.</p></li>
+<li><p><strong>mode</strong> (<em>{'logical'</em><em>, </em><em>'physical'}</em><em>, </em><em>default 'logical'</em>) – Quantum state representation mode to draw.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">qstate</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="go">c[00] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+<span class="go">c[01] = +0.0000+0.0000*i : 0.0000 |</span>
+<span class="go">c[10] = +0.0000+0.0000*i : 0.0000 |</span>
+<span class="go">c[11] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+<span class="go">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">qstate</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">ignore_zeros</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">c[00] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+<span class="go">c[11] = +0.7071+0.0000*i : 0.5000 |++++++</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.index_layout">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#eoqrid.QuantumState.index_layout" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.leakage">
+<span class="sig-name descname"><span class="pre">leakage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.QuantumState.leakage" title="Link to this definition"></a></dt>
+<dd><p>Get the leakage of the quantum state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Leakage of the quantum state.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id22">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">logical_qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id22" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id23">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id24">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id24" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id25">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">statevector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Statevector</span></span><a class="headerlink" href="#id25" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.ResetSinglet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">ResetSinglet</span></span><a class="headerlink" href="#eoqrid.ResetSinglet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
+<p>Singlet state preparation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.ResetUp">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">ResetUp</span></span><a class="headerlink" href="#eoqrid.ResetUp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
+<p>Singlet state preparation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.Result">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">Result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_qubits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_clbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qstate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_last</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">defaultdict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.Result" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Execution result of a quantum circuit or simulation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.Result.num_qubits">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><a class="headerlink" href="#eoqrid.Result.num_qubits" title="Link to this definition"></a></dt>
+<dd><p>Number of logical qubits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.Result.num_clbits">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><a class="headerlink" href="#eoqrid.Result.num_clbits" title="Link to this definition"></a></dt>
+<dd><p>Number of classical bits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.Result.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.Result.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots (physical qubits).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.Result.qstate">
+<span class="sig-name descname"><span class="pre">qstate</span></span><a class="headerlink" href="#eoqrid.Result.qstate" title="Link to this definition"></a></dt>
+<dd><p>Quantum state object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.QuantumState" title="eoqrid.QuantumState">QuantumState</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.Result.m_last">
+<span class="sig-name descname"><span class="pre">m_last</span></span><a class="headerlink" href="#eoqrid.Result.m_last" title="Link to this definition"></a></dt>
+<dd><p>Most recent measurement outcome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.Result.freq">
+<span class="sig-name descname"><span class="pre">freq</span></span><a class="headerlink" href="#eoqrid.Result.freq" title="Link to this definition"></a></dt>
+<dd><p>Measurement frequency distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>defaultdict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id26">
+<span class="sig-name descname"><span class="pre">freq</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">defaultdict</span></span><a class="headerlink" href="#id26" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id27">
+<span class="sig-name descname"><span class="pre">m_last</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#id27" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id28">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id28" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id29">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id29" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id30">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id30" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id31">
+<span class="sig-name descname"><span class="pre">qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span><a class="headerlink" href="#id31" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Python API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sam.N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

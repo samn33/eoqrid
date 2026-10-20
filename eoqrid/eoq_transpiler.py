@@ -19,7 +19,6 @@ from eoqrid.physical_quantum_circuit import PhysicalQuantumCircuit
 from eoqrid.reset_singlet import ResetSinglet
 from eoqrid.reset_up import ResetUp
 
-EPS = 1e-8
 
 class EoqTranspiler:
     """
@@ -224,7 +223,7 @@ class EoqTranspiler:
             Optimized native quantum circuit.
         """
         qc_native = qc_native_in.copy()
-        if qc_native.num_qubits > max(self._arch.topology.nodes) + 1:
+        if qc_native.num_qubits != max(self._arch.topology.nodes) + 1:
             raise ValueError("the number of nodes in the topology and the number of qubits do not match.")
 
         self._num_qubits = qc_native.num_qubits // 3
@@ -328,6 +327,8 @@ class EoqTranspiler:
             raise ValueError("the qc must be logical.")
         if optimization_level not in (0, 1, 2, 3):
             raise ValueError("the optimization_level must be 0, 1, 2, or 3.")
+        if qc.num_qubits * 3 != max(self._arch.topology.nodes) + 1:
+            raise ValueError("the number of nodes in the topology and the number of dots do not match.")
 
         qc_native = self._decompose(qc)
         qc_native = self._optimize(qc_native, optimization_level, seed)
@@ -383,6 +384,7 @@ class EoqTranspiler:
         QuantumCircuit
             Native quantum circuit implementing the Rz gate.
         """
+        EPS = 1e-8
         a0, a1 = q * 3, q * 3 + 1
         exchange_integral = 1.0
         time = -phase

@@ -10,8 +10,6 @@ class ResetUp(Instruction):
     """
     def __init__(self):
         super().__init__(name="up", num_qubits=1, num_clbits=0, params=[])
-        #self.duration = np.pi
-        #self.unit = "ns"
 
     def _define(self):
         qc = QuantumCircuit(self.num_qubits)

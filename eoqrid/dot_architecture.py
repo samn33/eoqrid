@@ -85,8 +85,9 @@ class DotArchitecture:
         bool
             True if the object is valid, False otherwise.
         """
-        #if self.num_dots < 0 or (self.num_dots >= 0 and self.num_dots % 3 != 0) or not nx.is_connected(self._topology):
         if self.num_dots <= 1 or not nx.is_connected(self._topology):
+            return False
+        if len(self._topology) != max(self._topology.nodes) + 1:
             return False
         for a, b in self._readout_pairs:
             if not self._topology.has_edge(a, b):
