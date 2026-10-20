@@ -16,7 +16,8 @@ EoqSimulator ..> Result : produces
 
 Result *--> QuantumState
 
-PhysicalQuantumCircuit o--> Singlet
+PhysicalQuantumCircuit o--> ResetSinglet
+PhysicalQuantumCircuit o--> ResetUp
 PhysicalQuantumCircuit o--> ExchangeInteraction
 PhysicalQuantumCircuit o--> Measurement
 
@@ -60,7 +61,10 @@ class ExchangeInteraction {
 class Measurement {
 }
 
-class Singlet {
+class ResetSinglet {
+}
+
+class ResetUp {
 }
 
 class DotArchitecture {

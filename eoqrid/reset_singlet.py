@@ -10,8 +10,6 @@ class ResetSinglet(Instruction):
     """
     def __init__(self):
         super().__init__(name="sin", num_qubits=2, num_clbits=0, params=[])
-        #self.duration = np.pi
-        #self.unit = "ns"
 
     def _define(self):
         qc = QuantumCircuit(self.num_qubits)

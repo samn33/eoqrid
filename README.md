@@ -92,6 +92,7 @@ c[111] = +0.0000+0.0000*i : 0.0000 |
 ## Documents
 
 - [Tutorial(japanese)](docs/tutorial/jp/main.md)
+- [Python API](https://samn33.github.io/eoqrid/)
 
 ## Requirements
 

@@ -12,3 +12,6 @@ test:
 
 uml:
 	cd docs/uml; plantuml -tsvg class.pu
+
+api:
+	cd docs; make html

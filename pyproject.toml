@@ -32,6 +32,9 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest",
+    "Sphinx",
+    "myst_parser",
+    "sphinx_rtd_theme",
 ]
 
 [tool.ruff.lint]
