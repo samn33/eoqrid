@@ -17,7 +17,6 @@ from eoqrid.util import random_arch, random_quantum_circuit
 def is_valid(arch: DotArchitecture, qc_in: QuantumCircuit, qc_out: PhysicalQuantumCircuit) -> bool:
 
     for name in qc_out.count_ops():
-        #if name not in ('ex', 'm', 'sin', 'reset'):
         if name not in ('ex', 'm', 'sin', 'up'):
             raise ValueError("qc_in is invalid.")
 
@@ -27,8 +26,7 @@ def is_valid(arch: DotArchitecture, qc_in: QuantumCircuit, qc_out: PhysicalQuant
     for i, inst in enumerate(qc_out.to_qiskit()):
         name = inst.operation.name
         qid = [q._index for q in inst.qubits]
-        #if name == 'reset':
-        if name == 'up':
+        if name in ('up', 'sin'):
             continue
         elif name == 'm':
             if qid in arch.readout_pairs:
@@ -40,28 +38,27 @@ def is_valid(arch: DotArchitecture, qc_in: QuantumCircuit, qc_out: PhysicalQuant
 
 # tests
 
-@pytest.mark.parametrize("num_qubits, num_measurements, num_readout_pairs", [
-    (1, 0, 0),
-    (1, 1, 1),
-    (1, 2, 2),
-    (1, 3, 3),
-    (2, 0, 0),
-    (2, 1, 1),
-    (2, 2, 2),
-    (2, 3, 3),
-    (3, 0, 0),
-    (3, 1, 1),
-    (3, 2, 2),
-    (3, 3, 3),
-    (4, 0, 0),
-    (4, 1, 1),
-    (4, 2, 2),
-    (4, 3, 3),
+@pytest.mark.parametrize("num_dots, num_qubits, num_measurements, num_readout_pairs", [
+    (3, 1, 0, 0),
+    (3, 1, 1, 1),
+    (3, 1, 2, 2),
+    (3, 1, 3, 3),
+    (6, 2, 0, 0),
+    (6, 2, 1, 1),
+    (6, 2, 2, 2),
+    (6, 2, 3, 3),
+    (9, 3, 0, 0),
+    (9, 3, 1, 1),
+    (9, 3, 2, 2),
+    (9, 3, 3, 3),
+    (12, 4, 0, 0),
+    (12, 4, 1, 1),
+    (12, 4, 2, 2),
+    (12, 4, 3, 3),
 ])
-def test_random_qc(num_qubits, num_measurements, num_readout_pairs):
+def test_random_qc(num_dots, num_qubits, num_measurements, num_readout_pairs):
 
     random.seed(123)
-    num_dots = num_qubits * 3
     depth = 10
     trial = 3
 
@@ -94,3 +91,13 @@ def test_exception_optimization_level_is_invalid():
 
     with pytest.raises(ValueError):
         eoq.transpile(qc_in, optimization_level=4)
+
+def test_exception_topology_size_is_not_match_num_dots():
+
+    qc_in = QuantumCircuit(2)
+    qc_in.h(0)
+    qc_in.cx(0, 1)
+    eoq = EoqEngine(DotArchitecture(5))
+
+    with pytest.raises(ValueError):
+        eoq.transpile(qc_in, optimization_level=3)

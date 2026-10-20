@@ -95,8 +95,8 @@ c[111] = +0.0000+0.0000*i : 0.0000 |
 
 ## Requirements
 
-- Linux (Ubuntu 24.04 LTS)
-- Python 3.12
+- Linux (Ubuntu 26.04 LTS)
+- Python 3.14
 
 ## Licence
 

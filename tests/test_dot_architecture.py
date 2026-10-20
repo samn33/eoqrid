@@ -66,6 +66,15 @@ def test_construct_and_add_edge():
     assert len(arch.topology.edges()) == num_edges
     assert arch.is_valid()
 
+def test_construct_invalid():
+
+    arch = DotArchitecture()
+    arch.add_edge(0, 1)
+    arch.add_edge(1, 3)
+    arch.add_edge(3, 4)
+
+    assert arch.is_valid() is False
+
 def test_readout_pairs():
 
     arch = DotArchitecture()

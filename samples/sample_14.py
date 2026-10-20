@@ -18,6 +18,7 @@ def main():
 
     print("== native quantum circuit for Pauli-X ==")
     qc_phys.append(ResetSinglet(), [0, 1])
+    qc_phys.append(ResetUp(), [2])
     qc_phys.append(ExchangeInteraction(theta), [0, 1])
     qc_phys.append(ExchangeInteraction(theta), [1, 2])
     qc_phys.append(ExchangeInteraction(theta), [2, 3])
