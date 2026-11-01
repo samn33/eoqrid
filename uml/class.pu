@@ -92,8 +92,8 @@ class QuantumState {
   + statevector: Statevector
   + data: np.ndarray
   + qiskit_data: np.ndarray
-  + logical_qstate: np.ndarray
-  + physical_qstate: np.ndarray
+  + logical_sv_data: np.ndarray
+  + physical_sv_data: np.ndarray
 }
 
 @enduml
