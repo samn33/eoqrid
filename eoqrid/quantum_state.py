@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import numpy as np
 import warnings
+from scipy.linalg import sqrtm
 
 from qiskit.quantum_info import Statevector, DensityMatrix, partial_trace, purity
 
@@ -186,8 +187,14 @@ class QuantumState:
         return self._logical_sv_data()
 
     @property
-    def physical_rho(self) -> np.ndarray:
+    def physical_rho_data(self) -> np.ndarray:
         return self._physical_rho_data()
+
+    @property
+    def logical_rho_data(self) -> np.ndarray:
+        if self._num_dots % 3 != 0:
+            raise ValueError("Can't get a logical quantum state.")
+        return self._logical_rho_data()
 
     @property
     def _base(self) -> list:
@@ -226,18 +233,6 @@ class QuantumState:
         p = purity(self._density_matrix)
         return abs(p.real - 1.0) > EPS
 
-    def _logical_sv_data(self) -> np.ndarray:
-        """
-        Get the logical quantum state vector.
-    
-        Returns
-        -------
-        np.ndarray
-            NumPy array representing the logical quantum state vector.
-        """
-        statevector = Statevector(self.physical_sv_data)
-        return np.array([np.vdot(base, statevector.reverse_qargs().data) for base in self._base])
-
     def _physical_sv_data(self) -> np.ndarray:
         """
         Get the physical quantum state vector.
@@ -261,6 +256,18 @@ class QuantumState:
             data[l_id] = sv.data[p_id]
 
         return self._reverse_qargs_1d(data)
+
+    def _logical_sv_data(self) -> np.ndarray:
+        """
+        Get the logical quantum state vector.
+    
+        Returns
+        -------
+        np.ndarray
+            NumPy array representing the logical quantum state vector.
+        """
+        statevector = Statevector(self.physical_sv_data)
+        return np.array([np.vdot(base, statevector.reverse_qargs().data) for base in self._base])
 
     def _physical_rho_data(self) -> np.ndarray:
         """
@@ -298,6 +305,19 @@ class QuantumState:
 
         return self._reverse_qargs_2d(data)
 
+    def _logical_rho_data(self) -> np.ndarray:
+        """
+        Get the logical density matrix.
+    
+        Returns
+        -------
+        np.ndarray
+            NumPy array representing the logical density matrix.
+        """
+        data = self.physical_rho_data
+        base_mat = np.array([v for v in self._base])
+        return base_mat.conj() @ data @ base_mat.T
+
     def _draw_pure_state(self, ignore_zeros=False, preal=0, mode: str = "logical") -> None:
         """
         Draw the pure quantum state as a vector.
@@ -332,6 +352,8 @@ class QuantumState:
         elif mode == "physical":
             vec = self.physical_sv_data
             digits = self._num_dots
+        else:
+            raise ValueError("The mode must be phyisical or logical.")
 
         if preal >= 0:
             exp_i_phase = 1.+0.j
@@ -368,8 +390,15 @@ class QuantumState:
             State index used to make its amplitude a positive real number.
             If -1, the global phase factor is not adjusted.
         """
-        mat = self.physical_rho
-        digits = self._num_dots
+        if mode == "logical":
+            mat = self.logical_rho_data
+            digits = self._num_qubits
+        elif mode == "physical":
+            mat = self.physical_rho_data
+            digits = self._num_dots
+        else:
+            raise ValueError("The mode must be phyisical or logical.")
+
         for i, line in enumerate(mat):
             bits_i = "{:0{digits}b}".format(i, digits=digits)
             for j, c in enumerate(line):
@@ -422,3 +451,50 @@ class QuantumState:
         proj_sv_data = proj_sv_data / np.linalg.norm(proj_sv_data)
         qstate_data = self._reverse_qargs_1d(self.physical_sv_data)
         return 1.0 - abs(np.vdot(qstate_data, proj_sv_data))
+
+    def _fidelity_for_pure_state(self, other: QuantumState, mode: str) -> float:
+        if mode == "physical":
+            fid = (
+                np.abs(np.vdot(self.physical_sv_data, other.physical_sv_data))
+                / (np.linalg.norm(self.physical_sv_data)
+                   * np.linalg.norm(other.physical_sv_data))
+            )
+        elif mode == "logical":
+            fid = (
+                np.abs(np.vdot(self.logical_sv_data, other.logical_sv_data))
+                / (np.linalg.norm(self.logical_sv_data)
+                   * np.linalg.norm(other.logical_sv_data))
+            )
+        else:
+            raise ValueError("The mode must be phyisical or logical.")
+        return fid
+
+    def _fidelity_for_mixed_state(self, other: QuantumState, mode: str) -> float:
+        if mode == "physical":
+            self_rho = self.physical_rho_data
+            other_rho = other.physical_rho_data
+        elif mode == "logical":
+            self_rho = self.logical_rho_data
+            other_rho = other.logical_rho_data
+        else:
+            raise ValueError("The mode must be phyisical or logical.")
+        sqrt_other_rho = sqrtm(other_rho)
+        mat = sqrtm(sqrt_other_rho @ self_rho @ sqrt_other_rho)
+        fid = np.real(np.trace(mat)) ** 2
+        return fid
+
+    def fidelity(self, other: QuantumState, mode: str = "logical") -> float:
+        """
+        Get the fidelity with other quantum state.
+    
+        Returns
+        -------
+        float
+            Fidelity with other quantum state.
+        """
+        if self.is_pure() and other.is_pure():
+            fid = self._fidelity_for_pure_state(other, mode)
+        else:
+            fid = self._fidelity_for_mixed_state(other, mode)
+
+        return fid
