@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import numpy as np
+import warnings
 
 from qiskit.quantum_info import Statevector, DensityMatrix, partial_trace, purity
 
@@ -21,10 +22,12 @@ class QuantumState:
         Qiskit Statevector object.
     density_matrix : DensityMatrix
         Qiskit DensityMatrix object.
-    logical_qstate : np.ndarray
+    logical_sv_data : np.ndarray
         NumPy array representing the logical quantum state vector.
-    physical_qstate : np.ndarray
+    physical_sv_data : np.ndarray
         NumPy array representing the physical quantum state vector.
+    physical_rho_data : np.ndarray
+        NumPy array representing the physical density matrix.
     """
     def __init__(
             self,
@@ -153,18 +156,38 @@ class QuantumState:
         self._index_layout = index_layout
 
     @property
-    def logical_qstate(self) -> np.ndarray:
-        if self._num_dots % 3 != 0:
-            raise ValueError("Can't get a logical quantum state.")
-        return self._logical_qstate()
+    def physical_qstate(self) -> np.ndarray:
+        warnings.warn(
+            "physical_qstate is deprecated and will be removed in a future version. Please use physical_sv_data instead.",
+            DeprecationWarning,
+            stacklevel = 2,
+        )
+        return self._physical_sv_data()
 
     @property
-    def physical_qstate(self) -> np.ndarray:
-        return self._physical_qstate()
+    def physical_sv_data(self) -> np.ndarray:
+        return self._physical_sv_data()
+
+    @property
+    def logical_qstate(self) -> np.ndarray:
+        warnings.warn(
+            "logical_qstate is deprecated and will be removed in a future version. Please use logical_sv_data instead.",
+            DeprecationWarning,
+            stacklevel = 2,
+        )
+        if self._num_dots % 3 != 0:
+            raise ValueError("Can't get a logical quantum state.")
+        return self._logical_sv_data()
+
+    @property
+    def logical_sv_data(self) -> np.ndarray:
+        if self._num_dots % 3 != 0:
+            raise ValueError("Can't get a logical quantum state.")
+        return self._logical_sv_data()
 
     @property
     def physical_rho(self) -> np.ndarray:
-        return self._physical_rho()
+        return self._physical_rho_data()
 
     @property
     def _base(self) -> list:
@@ -203,7 +226,7 @@ class QuantumState:
         p = purity(self._density_matrix)
         return abs(p.real - 1.0) > EPS
 
-    def _logical_qstate(self) -> np.ndarray:
+    def _logical_sv_data(self) -> np.ndarray:
         """
         Get the logical quantum state vector.
     
@@ -212,10 +235,10 @@ class QuantumState:
         np.ndarray
             NumPy array representing the logical quantum state vector.
         """
-        statevector = Statevector(self.physical_qstate)
+        statevector = Statevector(self.physical_sv_data)
         return np.array([np.vdot(base, statevector.reverse_qargs().data) for base in self._base])
 
-    def _physical_qstate(self) -> np.ndarray:
+    def _physical_sv_data(self) -> np.ndarray:
         """
         Get the physical quantum state vector.
 
@@ -239,7 +262,7 @@ class QuantumState:
 
         return self._reverse_qargs_1d(data)
 
-    def _physical_rho(self) -> np.ndarray:
+    def _physical_rho_data(self) -> np.ndarray:
         """
         Get the physical density matrix.
 
@@ -304,10 +327,10 @@ class QuantumState:
         c[11] = +0.7071+0.0000*i : 0.5000 |++++++
         """
         if mode == "logical":
-            vec = self.logical_qstate
+            vec = self.logical_sv_data
             digits = self._num_qubits
         elif mode == "physical":
-            vec = self.physical_qstate
+            vec = self.physical_sv_data
             digits = self._num_dots
 
         if preal >= 0:
@@ -392,10 +415,10 @@ class QuantumState:
         float
             Leakage of the quantum state.
         """
-        proj_qstate = np.zeros(len(self.physical_qstate), dtype=complex)
+        proj_sv_data = np.zeros(len(self.physical_sv_data), dtype=complex)
         for i, b in enumerate(self._base):
-            proj_qstate = proj_qstate + (self.logical_qstate[i] * b) # qiskit_order
+            proj_sv_data = proj_sv_data + (self.logical_sv_data[i] * b) # qiskit_order
     
-        proj_qstate = proj_qstate / np.linalg.norm(proj_qstate)
-        qstate_data = self._reverse_qargs_1d(self.physical_qstate)
-        return 1.0 - abs(np.vdot(qstate_data, proj_qstate))
+        proj_sv_data = proj_sv_data / np.linalg.norm(proj_sv_data)
+        qstate_data = self._reverse_qargs_1d(self.physical_sv_data)
+        return 1.0 - abs(np.vdot(qstate_data, proj_sv_data))

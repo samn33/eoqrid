@@ -166,5 +166,5 @@ class EoqEngine:
         
         res = self.execute(qc_phys)
         
-        fidelity = np.abs(np.vdot(state_expect, res.qstate.logical_qstate)) ** 2
+        fidelity = np.abs(np.vdot(state_expect, res.qstate.logical_sv_data)) ** 2
         return fidelity

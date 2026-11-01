@@ -32,7 +32,7 @@ def test_random_qc_random_arch(trial, num_qubits, depth, optimization_level, see
         
         res = eoq.execute(qc_t)
 
-        fid = np.abs(np.vdot(state_expect, res.qstate.logical_qstate)) ** 2
+        fid = np.abs(np.vdot(state_expect, res.qstate.logical_sv_data)) ** 2
         assert math.isclose(fid, 1.0, abs_tol=1e-8)
 
         leak = res.qstate.leakage()
@@ -102,7 +102,7 @@ def test_random_arch_with_measurement(trial, num_readout_pairs, optimization_lev
 def equal_state_vector(a, b):
     return math.isclose(abs(np.vdot(a, b)), 1.0, abs_tol=1e-8)
     
-def test_initial_logical_qstate():
+def test_initial_logical_sv_data():
 
     eoq = EoqEngine(DotArchitecture(3))
 
@@ -110,7 +110,7 @@ def test_initial_logical_qstate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -122,13 +122,13 @@ def test_initial_logical_qstate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0, 0.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
     assert equal_state_vector(expect, actual)
 
-def test_initial_physical_qstate():
+def test_initial_physical_sv_data():
 
     eoq = EoqEngine(DotArchitecture(3))
 
@@ -136,7 +136,7 @@ def test_initial_physical_qstate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.0, 0.0, 0.70710678, 0.0, -0.70710678, 0.0, 0.0, 0.0], dtype=complex)
-    actual = res.qstate.physical_qstate
+    actual = res.qstate.physical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -155,7 +155,7 @@ def test_initial_physical_qstate():
                        0.0, 0.0,  0. , 0.0,  0. , 0.0, 0.0, 0.0,
                        0.0, 0.0,  0. , 0.0,  0. , 0.0, 0.0, 0.0,
                        0.0, 0.0,  0. , 0.0,  0. , 0.0, 0.0, 0.0])
-    actual = res.qstate.physical_qstate
+    actual = res.qstate.physical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -170,7 +170,7 @@ def test_x_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.0, 1.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -183,7 +183,7 @@ def test_x_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.0, 1.0, 0.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -195,7 +195,7 @@ def test_x_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.0, 0.0, 0.0, 1.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -210,7 +210,7 @@ def test_h_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 1.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -222,7 +222,7 @@ def test_h_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, -1.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -235,7 +235,7 @@ def test_h_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0, 1.0, 0.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -246,7 +246,7 @@ def test_h_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 1.0, 0.0, 0.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -258,7 +258,7 @@ def test_h_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 1.0, 1.0, 1.0], dtype=complex) / 2.0
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -273,7 +273,7 @@ def test_z_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -285,7 +285,7 @@ def test_z_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, -1.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -299,7 +299,7 @@ def test_z_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0, -1.0, 0.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -311,7 +311,7 @@ def test_z_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, -1.0, 0.0, 0.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -324,7 +324,7 @@ def test_z_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 1.0, -1.0, -1.0], dtype=complex) / 2.0
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -339,7 +339,7 @@ def test_rz_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 1
     assert res.num_clbits == 0
     assert res.num_dots == 3
@@ -350,7 +350,7 @@ def test_rz_gate():
     qc.rz(np.pi/4.0, 0)
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     expect = np.array([1.0/np.sqrt(2.0), 0.5+0.5j], dtype=complex)
     assert res.num_qubits == 1
     assert res.num_clbits == 0
@@ -365,7 +365,7 @@ def test_rz_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0/np.sqrt(2.0), 0.0, 0.5+0.5j, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -377,7 +377,7 @@ def test_rz_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0/np.sqrt(2.0), 0.5+0.5j, 0.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -390,7 +390,7 @@ def test_rz_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.5, 0.5, 1.0/np.sqrt(8.0)+1.0j/np.sqrt(8.0), 1.0/np.sqrt(8.0)+1.0j/np.sqrt(8.0)], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -406,7 +406,7 @@ def test_cx_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.0, 0.0, 0.0, 1.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -418,7 +418,7 @@ def test_cx_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.0, 1.0, 0.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -431,7 +431,7 @@ def test_cx_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([0.0, 0.0, 1.0, 0.0], dtype=complex)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -443,7 +443,7 @@ def test_cx_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0, 0.0, 1.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
@@ -456,7 +456,7 @@ def test_cx_gate():
     qc_phys = eoq.transpile(qc)
     res = eoq.execute(qc_phys)
     expect = np.array([1.0, 0.0, 0.0, -1.0], dtype=complex) / np.sqrt(2.0)
-    actual = res.qstate.logical_qstate
+    actual = res.qstate.logical_sv_data
     assert res.num_qubits == 2
     assert res.num_clbits == 0
     assert res.num_dots == 6
