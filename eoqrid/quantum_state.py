@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 import copy
-import numpy as np
 import warnings
-from scipy.linalg import sqrtm
 
-from qiskit.quantum_info import Statevector, DensityMatrix, partial_trace, purity
+import numpy as np
+from qiskit.quantum_info import DensityMatrix, Statevector, partial_trace, purity
 
 EPS = 1e-8
 
@@ -91,14 +90,14 @@ class QuantumState:
     @statevector.setter
     def statevector(self, value) -> None:
         if not isinstance(value, Statevector):
-            raise ValueError("statevector must be Statevector object.")
+            raise TypeError("statevector must be Statevector object.")
         self._statevector = value
         self._density_matrix = DensityMatrix(value)
 
     @density_matrix.setter
     def density_matrix(self, value) -> None:
         if not isinstance(value, DensityMatrix):
-            raise ValueError("density_matrix must be DensityMatrix object.")
+            raise TypeError("density_matrix must be DensityMatrix object.")
         self._density_matrix = value
 
         p = purity(self._density_matrix)
@@ -226,12 +225,15 @@ class QuantumState:
             
         return base
 
+    def purity(self) -> float:
+        return purity(self._density_matrix).real
+
     def is_pure(self) -> bool:
         return not self.is_mixed()
     
     def is_mixed(self) -> bool:
-        p = purity(self._density_matrix)
-        return abs(p.real - 1.0) > EPS
+        p = self.purity()
+        return abs(p - 1.0) > EPS
 
     def _physical_sv_data(self) -> np.ndarray:
         """
@@ -376,7 +378,7 @@ class QuantumState:
             else:
                 print(f"c[{bits}] = {v.real:+.4f}{v.imag:+.4f}*i : {abs(v)**2:.4f} {bar_str}")
 
-    def _draw_mixed_state(self, ignore_zeros=False) -> None:
+    def _draw_mixed_state(self, ignore_zeros=False, mode: str = "logical") -> None:
         """
         Draw the mixed quantum state as a matrix.
 
@@ -452,7 +454,15 @@ class QuantumState:
         qstate_data = self._reverse_qargs_1d(self.physical_sv_data)
         return 1.0 - abs(np.vdot(qstate_data, proj_sv_data))
 
+    def _sqrt_hermitian_matrix(self, mat, tol: float = 1e-12):
+        eigenvalues, eigenvectors = np.linalg.eigh(mat)
+        eigenvalues = np.where(eigenvalues < tol, 0, eigenvalues)
+        sqrt_diag = np.sqrt(eigenvalues)
+
+        return eigenvectors @ np.diag(sqrt_diag) @ eigenvectors.conj().T
+        
     def _fidelity_for_pure_state(self, other: QuantumState, mode: str) -> float:
+        """ fidelity for self(pure state) and other(pure state) """
         if mode == "physical":
             fid = (
                 np.abs(np.vdot(self.physical_sv_data, other.physical_sv_data))
@@ -470,6 +480,7 @@ class QuantumState:
         return fid
 
     def _fidelity_for_mixed_state(self, other: QuantumState, mode: str) -> float:
+        """ fidelity for self(mixed state) and other(mixed state) """
         if mode == "physical":
             self_rho = self.physical_rho_data
             other_rho = other.physical_rho_data
@@ -478,8 +489,11 @@ class QuantumState:
             other_rho = other.logical_rho_data
         else:
             raise ValueError("The mode must be phyisical or logical.")
-        sqrt_other_rho = sqrtm(other_rho)
-        mat = sqrtm(sqrt_other_rho @ self_rho @ sqrt_other_rho)
+        
+        sqrt_other_rho = self._sqrt_hermitian_matrix(other_rho)
+        mat = self._sqrt_hermitian_matrix(
+            sqrt_other_rho @ self_rho @ sqrt_other_rho
+        )
         fid = np.real(np.trace(mat)) ** 2
         return fid
 
@@ -487,6 +501,13 @@ class QuantumState:
         """
         Get the fidelity with other quantum state.
     
+        Parameters
+        ----------
+        other : QuantumState
+            Other quantum state.
+        mode : {'logical', 'physical'}, default 'logical'
+            Quantum state representation mode to calculate fidelity.
+
         Returns
         -------
         float
@@ -496,5 +517,34 @@ class QuantumState:
             fid = self._fidelity_for_pure_state(other, mode)
         else:
             fid = self._fidelity_for_mixed_state(other, mode)
-
         return fid
+
+    def partial_trace(self, indices: list[int]) -> QuantumState:
+        """
+        Get the partial quantum state by parcial trace.
+    
+        Parameters
+        ----------
+        indices : list[int]
+            Physical qubit indices to traced out.
+
+        Returns
+        -------
+        QuantumState
+            Partial quantum state.
+        """
+        qs = copy.deepcopy(self)
+        rho = partial_trace(self._density_matrix, [self._index_layout[i] for i in indices]) 
+        qs.density_matrix = rho
+        qs.num_dots = len(self._index_layout) - len(indices)
+        qs.num_qubits = qs._num_dots // 3
+
+        index_layout = [index for i, index in enumerate(self._index_layout) if i not in indices]
+        trace_out = [self._index_layout[i] for i in indices]
+        for t in sorted(trace_out, reverse=True):
+            for i in range(qs.num_dots):
+                if index_layout[i] >= t:
+                    index_layout[i] -= 1
+        qs.index_layout = index_layout
+
+        return qs

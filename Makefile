@@ -10,7 +10,7 @@ ruff:
 test:
 	cd tests; pytest -s .
 
-uml:
+plantuml:
 	cd uml; plantuml -tsvg class.pu
 
 api:

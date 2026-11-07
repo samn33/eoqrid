@@ -94,6 +94,12 @@ class QuantumState {
   + qiskit_data: np.ndarray
   + logical_sv_data: np.ndarray
   + physical_sv_data: np.ndarray
+  --
+  + purity(): float
+  + is_pure(): bool
+  + is_mixed(): bool
+  + fidelity(other: QuantumState, mode: str): float
+  + partial_trace(indixes: list[int]): QuantumState
 }
 
 @enduml
