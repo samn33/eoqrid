@@ -75,11 +75,11 @@ c[100100] = -0.3333-0.3333*i : 0.2222 |+++
 
 ここで、注意事項を一つ。`eoqrid`での状態ベクトルの配列順は`qiskit`とは異なります。例えば、2量子ビットの状態ベクトルの成分は、|00>,|01>,|10>,|11>に対する確率振幅の配列なのですが、ケット内の一番左のビットが0番目の量子ビットを表しており、`qiskit`とは逆順になります。
 
-表示ではなく、状態ベクトルそのもののnumpy配列を取得したい場合は、各々属性値`logical_qstate`および`physical_qstate`で取得することができます。
+表示ではなく、状態ベクトルそのもののnumpy配列を取得したい場合は、各々属性値`logical_sv_data`および`physical_sv_data`で取得することができます。
 
 ```python
-data_logical = res.qstate.logical_qstate
-data_physical = res.qstate.physical_qstate
+data_logical = res.qstate.logical_sv_data
+data_physical = res.qstate.physical_sv_data
 ```
 
 以上、量子回路に測定を含まない場合の例でした。

@@ -10,8 +10,8 @@ ruff:
 test:
 	cd tests; pytest -s .
 
-uml:
-	cd docs/uml; plantuml -tsvg class.pu
+plantuml:
+	cd uml; plantuml -tsvg class.pu
 
 api:
 	cd docs; make html; cp -rf build/html/* .

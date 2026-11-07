@@ -1,4 +1,4 @@
-__version__ = "0.3.2"
+__version__ = "0.3.3"
 from .dot_architecture import DotArchitecture
 from .eoq_engine import EoqEngine
 from .exchange_interaction import ExchangeInteraction

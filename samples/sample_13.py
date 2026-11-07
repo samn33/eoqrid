@@ -3,41 +3,30 @@ from qiskit import QuantumCircuit
 from eoqrid import DotArchitecture, EoqEngine
 from eoqrid.util import plot_qc
 
+arch = DotArchitecture()
+arch.add_edge(0, 1)
+arch.add_edge(1, 2)
+arch.add_edge(2, 3)
+arch.add_edge(3, 4)
+arch.add_edge(4, 5)
+arch.add_readout_pair(2, 3)
+arch.add_readout_pair(4, 5)
 
-def main():
+qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure(0, 0)
+qc.measure(1, 1)
 
-    #arch = DotArchitecture(6)
+print("== quantum circuit ==")
+print(qc)
 
-    arch = DotArchitecture()
-    arch.add_edge(0, 1)
-    arch.add_edge(1, 2)
-    arch.add_edge(2, 3)
-    arch.add_edge(3, 4)
-    arch.add_edge(4, 5)
-    arch.add_readout_pair(2, 3)
-    arch.add_readout_pair(4, 5)
+eoq = EoqEngine(arch)
+qc_phys = eoq.transpile(qc, seed=123)
+print(qc_phys)
 
-    #print(arch)
-    #plot_arch(arch)
+plot_qc(qc_phys)
 
-    qc = QuantumCircuit(2, 2)
-    qc.h(0)
-    qc.cx(0, 1)
-    qc.measure(0, 0)
-    qc.measure(1, 1)
-
-    print("== quantum circuit ==")
-    print(qc)
-
-    eoq = EoqEngine(arch)
-    qc_phys = eoq.transpile(qc, seed=123)
-    print(qc_phys)
-
-    plot_qc(qc_phys)
-
-    res = eoq.execute(qc_phys, shots=10)
-    print(res)
-    print(f"depth = {qc_phys.depth()}")
-    
-if __name__ == "__main__":
-    main()
+res = eoq.execute(qc_phys, shots=10)
+print(res)
+print(f"depth = {qc_phys.depth()}")

@@ -17,7 +17,11 @@ class PhysicalQuantumCircuit:
     num_dots : int
         Number of quantum dots.
     """
-    def __init__(self, qc: QuantumCircuit | int) -> None:
+    def __init__(
+            self,
+            qc: QuantumCircuit | int,
+            index_layout: list[int] | None = None
+    ) -> None:
         """
         Initialize the physical quantum circuit.
 
@@ -32,6 +36,8 @@ class PhysicalQuantumCircuit:
             self._qc = qc
         else:
             raise TypeError("qc must be QuantumCircuit or integer.")
+
+        self._index_layout = index_layout
 
     def is_valid(self) -> bool:
         """
@@ -66,8 +72,22 @@ class PhysicalQuantumCircuit:
         and initializes all of them to the singlet state.
         """
         if self.num_qubits % 3 != 0:
-            raise ValueError("NUmber of qubits must be a multiple of 3.")
-        for q in range(self.num_qubits // 3):
-            a0, a1, a2 = q * 3, q * 3 + 1, q * 3 + 2
-            self._qc.append(ResetSinglet(), [a0, a1])
-            self._qc.append(ResetUp(), [a2])
+            raise ValueError("Number of qubits must be a multiple of 3.")
+
+        if self._index_layout is None:
+            for q in range(self.num_qubits // 3):
+                a0, a1, a2 = q * 3, q * 3 + 1, q * 3 + 2
+                self._qc.append(ResetSinglet(), [a0, a1])
+                self._qc.append(ResetUp(), [a2])
+        else:
+            if len(self._index_layout) % 3 != 0:
+                raise ValueError("Length of indices must be a multiple of 3.")
+            for q in range(len(self._index_layout) // 3):
+                (a0, a1, a2) = (
+                    self._index_layout[q * 3],
+                    self._index_layout[q * 3 + 1],
+                    self._index_layout[q * 3 + 2]
+                )
+                self._qc.append(ResetSinglet(), [a0, a1])
+                self._qc.append(ResetUp(), [a2])
+            
