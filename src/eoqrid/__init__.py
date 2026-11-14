@@ -1,4 +1,5 @@
-__version__ = "0.3.3"
+from importlib.metadata import version
+__version__ = version("eoqrid")
 from .dot_architecture import DotArchitecture
 from .eoq_engine import EoqEngine
 from .exchange_interaction import ExchangeInteraction
