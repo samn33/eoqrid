@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>eoqrid package &mdash; eoqrid 0.3.2 documentation</title>
+  <title>eoqrid package &mdash; eoqrid 0.4.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=71d9d8e6"></script>
+      <script src="_static/documentation_options.js?v=6c02275b"></script>
       <script src="_static/doctools.js?v=fd6eb6e6"></script>
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
@@ -66,15 +66,26 @@
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.arch"><code class="docutils literal notranslate"><span class="pre">EoqEngine.arch</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.num_dots"><code class="docutils literal notranslate"><span class="pre">EoqEngine.num_dots</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.transpiler"><code class="docutils literal notranslate"><span class="pre">EoqEngine.transpiler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.scheduler"><code class="docutils literal notranslate"><span class="pre">EoqEngine.scheduler</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.simulator"><code class="docutils literal notranslate"><span class="pre">EoqEngine.simulator</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">EoqEngine.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.drive"><code class="docutils literal notranslate"><span class="pre">EoqEngine.drive()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.execute"><code class="docutils literal notranslate"><span class="pre">EoqEngine.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.fidelity"><code class="docutils literal notranslate"><span class="pre">EoqEngine.fidelity()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">EoqEngine.num_dots</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.run"><code class="docutils literal notranslate"><span class="pre">EoqEngine.run()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">EoqEngine.simulator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.schedule"><code class="docutils literal notranslate"><span class="pre">EoqEngine.schedule()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">EoqEngine.scheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">EoqEngine.simulator</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_engine.EoqEngine.transpile"><code class="docutils literal notranslate"><span class="pre">EoqEngine.transpile()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">EoqEngine.transpiler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">EoqEngine.transpiler</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.eoq_scheduler">eoqrid.eoq_scheduler module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.eoq_scheduler.EoqScheduler"><code class="docutils literal notranslate"><span class="pre">EoqScheduler</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_scheduler.EoqScheduler.schedule"><code class="docutils literal notranslate"><span class="pre">EoqScheduler.schedule()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +93,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.eoq_simulator">eoqrid.eoq_simulator module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator"><code class="docutils literal notranslate"><span class="pre">EoqSimulator</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.arch"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.arch</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.drive"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.drive()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.execute"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.execute()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.num_dots"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.num_dots</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_simulator.EoqSimulator.num_qubits"><code class="docutils literal notranslate"><span class="pre">EoqSimulator.num_qubits</span></code></a></li>
@@ -94,7 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.eoq_transpiler">eoqrid.eoq_transpiler module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.eoq_transpiler.EoqTranspiler"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_transpiler.EoqTranspiler.arch"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler.arch</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler.arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler.arch</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.eoq_transpiler.EoqTranspiler.transpile"><code class="docutils literal notranslate"><span class="pre">EoqTranspiler.transpile()</span></code></a></li>
 </ul>
 </li>
@@ -104,17 +116,111 @@
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.exchange_interaction.ExchangeInteraction"><code class="docutils literal notranslate"><span class="pre">ExchangeInteraction</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.instruction">eoqrid.instruction module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.instruction.Instruction"><code class="docutils literal notranslate"><span class="pre">Instruction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.Instruction.duration"><code class="docutils literal notranslate"><span class="pre">Instruction.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.Instruction.name"><code class="docutils literal notranslate"><span class="pre">Instruction.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.Instruction.to_dict"><code class="docutils literal notranslate"><span class="pre">Instruction.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.Instruction.to_string"><code class="docutils literal notranslate"><span class="pre">Instruction.to_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.Instruction.width"><code class="docutils literal notranslate"><span class="pre">Instruction.width</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.instruction.InstructionExchangeInteraction"><code class="docutils literal notranslate"><span class="pre">InstructionExchangeInteraction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionExchangeInteraction.duration"><code class="docutils literal notranslate"><span class="pre">InstructionExchangeInteraction.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionExchangeInteraction.integral"><code class="docutils literal notranslate"><span class="pre">InstructionExchangeInteraction.integral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionExchangeInteraction.to_dict"><code class="docutils literal notranslate"><span class="pre">InstructionExchangeInteraction.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionExchangeInteraction.to_string"><code class="docutils literal notranslate"><span class="pre">InstructionExchangeInteraction.to_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.instruction.InstructionMeasurement"><code class="docutils literal notranslate"><span class="pre">InstructionMeasurement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionMeasurement.duration"><code class="docutils literal notranslate"><span class="pre">InstructionMeasurement.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionMeasurement.to_dict"><code class="docutils literal notranslate"><span class="pre">InstructionMeasurement.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionMeasurement.to_string"><code class="docutils literal notranslate"><span class="pre">InstructionMeasurement.to_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.instruction.InstructionResetSinglet"><code class="docutils literal notranslate"><span class="pre">InstructionResetSinglet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionResetSinglet.duration"><code class="docutils literal notranslate"><span class="pre">InstructionResetSinglet.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionResetSinglet.to_dict"><code class="docutils literal notranslate"><span class="pre">InstructionResetSinglet.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionResetSinglet.to_string"><code class="docutils literal notranslate"><span class="pre">InstructionResetSinglet.to_string()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.instruction.InstructionResetUp"><code class="docutils literal notranslate"><span class="pre">InstructionResetUp</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionResetUp.duration"><code class="docutils literal notranslate"><span class="pre">InstructionResetUp.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionResetUp.to_dict"><code class="docutils literal notranslate"><span class="pre">InstructionResetUp.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction.InstructionResetUp.to_string"><code class="docutils literal notranslate"><span class="pre">InstructionResetUp.to_string()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.instruction_layer">eoqrid.instruction_layer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.instruction_layer.InstructionLayer"><code class="docutils literal notranslate"><span class="pre">InstructionLayer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_layer.InstructionLayer.duration"><code class="docutils literal notranslate"><span class="pre">InstructionLayer.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_layer.InstructionLayer.to_string"><code class="docutils literal notranslate"><span class="pre">InstructionLayer.to_string()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.instruction_sequence">eoqrid.instruction_sequence module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence"><code class="docutils literal notranslate"><span class="pre">InstructionSequence</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.num_dots"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.num_clbits"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.index_layout"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.pulse_distortion"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.pulse_distortion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.duration"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.to_dict"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.to_json"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.to_physical_quantum_circuit"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_physical_quantum_circuit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence.to_string"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_string()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.measurement">eoqrid.measurement module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.measurement.Measurement"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.noise_model">eoqrid.noise_model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.noise_model.NoiseModel"><code class="docutils literal notranslate"><span class="pre">NoiseModel</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.physical_quantum_circuit">eoqrid.physical_quantum_circuit module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.qc"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.qc</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_clbits"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.qc"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.qc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.index_layout"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.index_layout</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.initialize"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.initialize()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.is_valid"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.qc</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.to_qiskit"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.to_qiskit()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.pulse_distortion">eoqrid.pulse_distortion module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.pulse_distortion.GaussianDistortion"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.GaussianDistortion.amplitude"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.amplitude()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.GaussianDistortion.duration"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.GaussianDistortion.integral"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.integral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.GaussianDistortion.integral_to_width"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.integral_to_width()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion"><code class="docutils literal notranslate"><span class="pre">PulseDistortion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion.amplitude"><code class="docutils literal notranslate"><span class="pre">PulseDistortion.amplitude()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion.duration"><code class="docutils literal notranslate"><span class="pre">PulseDistortion.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion.integral"><code class="docutils literal notranslate"><span class="pre">PulseDistortion.integral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion.integral_to_width"><code class="docutils literal notranslate"><span class="pre">PulseDistortion.integral_to_width()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion.name"><code class="docutils literal notranslate"><span class="pre">PulseDistortion.name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.pulse_distortion.RectangularDistortion"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.RectangularDistortion.amplitude"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.amplitude()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.RectangularDistortion.duration"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.RectangularDistortion.integral"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.integral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.pulse_distortion.RectangularDistortion.integral_to_width"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.integral_to_width()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -128,24 +234,25 @@
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.logical_sv_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_sv_data</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.physical_sv_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_sv_data</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.physical_rho_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_rho_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">QuantumState.density_matrix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.index_layout"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">QuantumState.density_matrix</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.draw"><code class="docutils literal notranslate"><span class="pre">QuantumState.draw()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.fidelity"><code class="docutils literal notranslate"><span class="pre">QuantumState.fidelity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.index_layout"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.is_mixed"><code class="docutils literal notranslate"><span class="pre">QuantumState.is_mixed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.is_pure"><code class="docutils literal notranslate"><span class="pre">QuantumState.is_pure()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.leakage"><code class="docutils literal notranslate"><span class="pre">QuantumState.leakage()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.logical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_qstate</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.logical_rho_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_rho_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_sv_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_sv_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_qubits</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.partial_trace"><code class="docutils literal notranslate"><span class="pre">QuantumState.partial_trace()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.physical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_qstate</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_rho_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_sv_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_rho_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_sv_data</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.quantum_state.QuantumState.purity"><code class="docutils literal notranslate"><span class="pre">QuantumState.purity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -166,12 +273,12 @@
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.qstate"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.m_last"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.result.Result.freq"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id17"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id20"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id21"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -183,6 +290,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-eoqrid.util">eoqrid.util module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.plot_arch"><code class="docutils literal notranslate"><span class="pre">plot_arch()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.plot_graph"><code class="docutils literal notranslate"><span class="pre">plot_graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.plot_pdist"><code class="docutils literal notranslate"><span class="pre">plot_pdist()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.plot_qc"><code class="docutils literal notranslate"><span class="pre">plot_qc()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.random_arch"><code class="docutils literal notranslate"><span class="pre">random_arch()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.util.random_quantum_circuit"><code class="docutils literal notranslate"><span class="pre">random_quantum_circuit()</span></code></a></li>
@@ -197,13 +305,47 @@
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.add_readout_pair"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.add_readout_pair()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.is_readout_pair"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.is_readout_pair()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.DotArchitecture.is_valid"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.is_valid()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.num_dots</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id23"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.readout_pairs</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id24"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.topology</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id29"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.readout_pairs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id30"><code class="docutils literal notranslate"><span class="pre">DotArchitecture.topology</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.ExchangeInteraction"><code class="docutils literal notranslate"><span class="pre">ExchangeInteraction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.GaussianDistortion"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.GaussianDistortion.amplitude"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.amplitude()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.GaussianDistortion.duration"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.GaussianDistortion.integral"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.integral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.GaussianDistortion.integral_to_width"><code class="docutils literal notranslate"><span class="pre">GaussianDistortion.integral_to_width()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.InstructionSequence"><code class="docutils literal notranslate"><span class="pre">InstructionSequence</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.num_dots"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.num_clbits"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.index_layout"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.pulse_distortion"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.pulse_distortion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.duration"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.to_dict"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.to_json"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.to_physical_quantum_circuit"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_physical_quantum_circuit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.InstructionSequence.to_string"><code class="docutils literal notranslate"><span class="pre">InstructionSequence.to_string()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.Measurement"><code class="docutils literal notranslate"><span class="pre">Measurement</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.NoiseModel"><code class="docutils literal notranslate"><span class="pre">NoiseModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit.num_dots"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit.num_clbits"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit.qc"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.qc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit.index_layout"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id31"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit.initialize"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.initialize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit.is_valid"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.is_valid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id32"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.qc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.PhysicalQuantumCircuit.to_qiskit"><code class="docutils literal notranslate"><span class="pre">PhysicalQuantumCircuit.to_qiskit()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.QuantumState"><code class="docutils literal notranslate"><span class="pre">QuantumState</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.num_qubits"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_qubits</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.num_dots"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
@@ -212,24 +354,32 @@
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.logical_sv_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_sv_data</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.physical_sv_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_sv_data</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.physical_rho_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_rho_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id25"><code class="docutils literal notranslate"><span class="pre">QuantumState.density_matrix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.index_layout"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35"><code class="docutils literal notranslate"><span class="pre">QuantumState.density_matrix</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.draw"><code class="docutils literal notranslate"><span class="pre">QuantumState.draw()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.fidelity"><code class="docutils literal notranslate"><span class="pre">QuantumState.fidelity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.index_layout"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36"><code class="docutils literal notranslate"><span class="pre">QuantumState.index_layout</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.is_mixed"><code class="docutils literal notranslate"><span class="pre">QuantumState.is_mixed()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.is_pure"><code class="docutils literal notranslate"><span class="pre">QuantumState.is_pure()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.leakage"><code class="docutils literal notranslate"><span class="pre">QuantumState.leakage()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.logical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_qstate</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.logical_rho_data"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_rho_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_sv_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id27"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id28"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id37"><code class="docutils literal notranslate"><span class="pre">QuantumState.logical_sv_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id38"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id39"><code class="docutils literal notranslate"><span class="pre">QuantumState.num_qubits</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.partial_trace"><code class="docutils literal notranslate"><span class="pre">QuantumState.partial_trace()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.physical_qstate"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_qstate</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id29"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_rho_data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id30"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_sv_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id40"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_rho_data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id41"><code class="docutils literal notranslate"><span class="pre">QuantumState.physical_sv_data</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.QuantumState.purity"><code class="docutils literal notranslate"><span class="pre">QuantumState.purity()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id31"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id42"><code class="docutils literal notranslate"><span class="pre">QuantumState.statevector</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#eoqrid.RectangularDistortion"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.RectangularDistortion.amplitude"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.amplitude()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.RectangularDistortion.duration"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.duration()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.RectangularDistortion.integral"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.integral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eoqrid.RectangularDistortion.integral_to_width"><code class="docutils literal notranslate"><span class="pre">RectangularDistortion.integral_to_width()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#eoqrid.ResetSinglet"><code class="docutils literal notranslate"><span class="pre">ResetSinglet</span></code></a></li>
@@ -241,12 +391,12 @@
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.qstate"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.m_last"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eoqrid.Result.freq"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id32"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id33"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id34"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id35"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id36"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id37"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id43"><code class="docutils literal notranslate"><span class="pre">Result.freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id44"><code class="docutils literal notranslate"><span class="pre">Result.m_last</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id45"><code class="docutils literal notranslate"><span class="pre">Result.num_clbits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id46"><code class="docutils literal notranslate"><span class="pre">Result.num_dots</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id47"><code class="docutils literal notranslate"><span class="pre">Result.num_qubits</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id48"><code class="docutils literal notranslate"><span class="pre">Result.qstate</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -448,6 +598,17 @@
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.scheduler">
+<span class="sig-name descname"><span class="pre">scheduler</span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.scheduler" title="Link to this definition"></a></dt>
+<dd><p>Scheduler to generate instruction sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.eoq_scheduler.EoqScheduler" title="eoqrid.eoq_scheduler.EoqScheduler">EoqScheduler</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.simulator">
 <span class="sig-name descname"><span class="pre">simulator</span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.simulator" title="Link to this definition"></a></dt>
 <dd><p>Quantum circuit simulator.</p>
@@ -462,6 +623,27 @@
 <dt class="sig sig-object py" id="id3">
 <span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.drive">
+<span class="sig-name descname"><span class="pre">drive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence" title="eoqrid.instruction_sequence.InstructionSequence"><span class="pre">InstructionSequence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.noise_model.NoiseModel" title="eoqrid.noise_model.NoiseModel"><span class="pre">NoiseModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.drive" title="Link to this definition"></a></dt>
+<dd><p>Execute a instruction sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inst_seq</strong> (<a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence" title="eoqrid.instruction_sequence.InstructionSequence"><em>InstructionSequence</em></a>) – Instruction sequence.</p></li>
+<li><p><strong>noise_model</strong> (<a class="reference internal" href="#eoqrid.noise_model.NoiseModel" title="eoqrid.noise_model.NoiseModel"><em>NoiseModel</em></a>) – Noise model.</p></li>
+<li><p><strong>shots</strong> (<em>int</em>) – Number of shots.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Execution result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result">Result</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.execute">
@@ -530,9 +712,34 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_engine.EoqEngine.schedule">
+<span class="sig-name descname"><span class="pre">schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc_phys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_distortion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><span class="pre">PulseDistortion</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence" title="eoqrid.instruction_sequence.InstructionSequence"><span class="pre">InstructionSequence</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_engine.EoqEngine.schedule" title="Link to this definition"></a></dt>
+<dd><p>Generate instruction sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc_phys</strong> (<a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><em>PhysicalQuantumCircuit</em></a>) – Physical quantum circuit.</p></li>
+<li><p><strong>pulse_distortion</strong> (<a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><em>PulseDistortion</em></a>) – Pulse distortion.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instruction sequence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence" title="eoqrid.instruction_sequence.InstructionSequence">InstructionSequence</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="id5">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">simulator</span></span><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">scheduler</span></span><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id6">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">simulator</span></span><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -557,9 +764,39 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id6">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">transpiler</span></span><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id7">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">transpiler</span></span><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.eoq_scheduler">
+<span id="eoqrid-eoq-scheduler-module"></span><h2>eoqrid.eoq_scheduler module<a class="headerlink" href="#module-eoqrid.eoq_scheduler" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.eoq_scheduler.EoqScheduler">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.eoq_scheduler.</span></span><span class="sig-name descname"><span class="pre">EoqScheduler</span></span><a class="headerlink" href="#eoqrid.eoq_scheduler.EoqScheduler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Scheduler for exchange-only quantum computing.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_scheduler.EoqScheduler.schedule">
+<span class="sig-name descname"><span class="pre">schedule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc_phys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_distortion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><span class="pre">PulseDistortion</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence" title="eoqrid.instruction_sequence.InstructionSequence"><span class="pre">InstructionSequence</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_scheduler.EoqScheduler.schedule" title="Link to this definition"></a></dt>
+<dd><p>Generate instruction sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>qc_phys</strong> (<em>QuantumCircuit</em>) – Physical uantum circuit.</p></li>
+<li><p><strong>pulse_distortion</strong> (<a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><em>PulseDistortion</em></a>) – Pulse distortion (RectangularDistortion/GaussianDistortion etc).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instruction sequence.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence" title="eoqrid.instruction_sequence.InstructionSequence">InstructionSequence</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -583,9 +820,30 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id7">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id8">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator.drive">
+<span class="sig-name descname"><span class="pre">drive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.instruction_sequence.InstructionSequence" title="eoqrid.instruction_sequence.InstructionSequence"><span class="pre">InstructionSequence</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.noise_model.NoiseModel" title="eoqrid.noise_model.NoiseModel"><span class="pre">NoiseModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result"><span class="pre">Result</span></a></span></span><a class="headerlink" href="#eoqrid.eoq_simulator.EoqSimulator.drive" title="Link to this definition"></a></dt>
+<dd><p>Execute an instruction sequence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inst_seq</strong> (<em>Instruction sequence</em>) – Instruction sequence.</p></li>
+<li><p><strong>noise_model</strong> (<a class="reference internal" href="#eoqrid.noise_model.NoiseModel" title="eoqrid.noise_model.NoiseModel"><em>NoiseModel</em></a>) – Noise model.</p></li>
+<li><p><strong>shots</strong> (<em>int</em><em>, </em><em>default 1</em>) – Number of shots.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Execution result.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.result.Result" title="eoqrid.result.Result">Result</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="eoqrid.eoq_simulator.EoqSimulator.execute">
@@ -661,8 +919,8 @@
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id8">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id9">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">arch</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.dot_architecture.DotArchitecture" title="eoqrid.dot_architecture.DotArchitecture"><span class="pre">DotArchitecture</span></a></span><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -699,6 +957,229 @@
 </dd></dl>
 
 </section>
+<section id="module-eoqrid.instruction">
+<span id="eoqrid-instruction-module"></span><h2>eoqrid.instruction module<a class="headerlink" href="#module-eoqrid.instruction" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.instruction.Instruction">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.instruction.</span></span><span class="sig-name descname"><span class="pre">Instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qregs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.instruction.Instruction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.Instruction.duration">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#eoqrid.instruction.Instruction.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.instruction.Instruction.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#eoqrid.instruction.Instruction.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.Instruction.to_dict">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.Instruction.to_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.Instruction.to_string">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.Instruction.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.instruction.Instruction.width">
+<span class="sig-name descname"><span class="pre">width</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#eoqrid.instruction.Instruction.width" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionExchangeInteraction">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.instruction.</span></span><span class="sig-name descname"><span class="pre">InstructionExchangeInteraction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qregs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_distortion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><span class="pre">PulseDistortion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.instruction.InstructionExchangeInteraction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.instruction.Instruction" title="eoqrid.instruction.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionExchangeInteraction.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionExchangeInteraction.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionExchangeInteraction.integral">
+<span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionExchangeInteraction.integral" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionExchangeInteraction.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionExchangeInteraction.to_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionExchangeInteraction.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionExchangeInteraction.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionMeasurement">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.instruction.</span></span><span class="sig-name descname"><span class="pre">InstructionMeasurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qregs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cregs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.instruction.InstructionMeasurement" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.instruction.Instruction" title="eoqrid.instruction.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionMeasurement.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionMeasurement.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionMeasurement.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionMeasurement.to_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionMeasurement.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionMeasurement.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetSinglet">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.instruction.</span></span><span class="sig-name descname"><span class="pre">InstructionResetSinglet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qregs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.instruction.InstructionResetSinglet" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.instruction.Instruction" title="eoqrid.instruction.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetSinglet.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionResetSinglet.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetSinglet.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionResetSinglet.to_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetSinglet.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionResetSinglet.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetUp">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.instruction.</span></span><span class="sig-name descname"><span class="pre">InstructionResetUp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qregs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.instruction.InstructionResetUp" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.instruction.Instruction" title="eoqrid.instruction.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetUp.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionResetUp.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetUp.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionResetUp.to_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction.InstructionResetUp.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction.InstructionResetUp.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.instruction_layer">
+<span id="eoqrid-instruction-layer-module"></span><h2>eoqrid.instruction_layer module<a class="headerlink" href="#module-eoqrid.instruction_layer" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.instruction_layer.InstructionLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.instruction_layer.</span></span><span class="sig-name descname"><span class="pre">InstructionLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initlist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.instruction_layer.InstructionLayer" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code></p>
+<p>Instruction layer.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction_layer.InstructionLayer.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.instruction_layer.InstructionLayer.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction_layer.InstructionLayer.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction_layer.InstructionLayer.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.instruction_sequence">
+<span id="eoqrid-instruction-sequence-module"></span><h2>eoqrid.instruction_sequence module<a class="headerlink" href="#module-eoqrid.instruction_sequence" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.instruction_sequence.</span></span><span class="sig-name descname"><span class="pre">InstructionSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_clbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_distortion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><span class="pre">PulseDistortion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code></p>
+<p>Instruction sequence.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots (physical qubits).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.num_clbits">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.num_clbits" title="Link to this definition"></a></dt>
+<dd><p>Number of classical bits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.index_layout">
+<span class="sig-name descname"><span class="pre">index_layout</span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.index_layout" title="Link to this definition"></a></dt>
+<dd><p>List representing the mapping of quantum circuit register to quantum dot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.pulse_distortion">
+<span class="sig-name descname"><span class="pre">pulse_distortion</span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.pulse_distortion" title="Link to this definition"></a></dt>
+<dd><p>Pulse distortion to model how voltage-pulse durations map to exchange interactions on the quantum chip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion">PulseDistortion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.to_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.to_json" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.to_physical_quantum_circuit">
+<span class="sig-name descname"><span class="pre">to_physical_quantum_circuit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.to_physical_quantum_circuit" title="Link to this definition"></a></dt>
+<dd><p>Convert to physical quantum circuit.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.instruction_sequence.InstructionSequence.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.instruction_sequence.InstructionSequence.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
 <section id="module-eoqrid.measurement">
 <span id="eoqrid-measurement-module"></span><h2>eoqrid.measurement module<a class="headerlink" href="#module-eoqrid.measurement" title="Link to this heading"></a></h2>
 <dl class="py class">
@@ -709,13 +1190,45 @@
 </dd></dl>
 
 </section>
+<section id="module-eoqrid.noise_model">
+<span id="eoqrid-noise-model-module"></span><h2>eoqrid.noise_model module<a class="headerlink" href="#module-eoqrid.noise_model" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.noise_model.NoiseModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.noise_model.</span></span><span class="sig-name descname"><span class="pre">NoiseModel</span></span><a class="headerlink" href="#eoqrid.noise_model.NoiseModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>NoiseModel.</p>
+</dd></dl>
+
+</section>
 <section id="module-eoqrid.physical_quantum_circuit">
 <span id="eoqrid-physical-quantum-circuit-module"></span><h2>eoqrid.physical_quantum_circuit module<a class="headerlink" href="#module-eoqrid.physical_quantum_circuit" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.physical_quantum_circuit.</span></span><span class="sig-name descname"><span class="pre">PhysicalQuantumCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QuantumCircuit</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.physical_quantum_circuit.</span></span><span class="sig-name descname"><span class="pre">PhysicalQuantumCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_clbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Physical quantum circuit in exchange-only architecture.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_clbits">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_clbits" title="Link to this definition"></a></dt>
+<dd><p>Number of classical bits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.qc">
 <span class="sig-name descname"><span class="pre">qc</span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.qc" title="Link to this definition"></a></dt>
@@ -728,15 +1241,20 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots">
-<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.num_dots" title="Link to this definition"></a></dt>
-<dd><p>Number of quantum dots.</p>
+<dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.index_layout">
+<span class="sig-name descname"><span class="pre">index_layout</span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.index_layout" title="Link to this definition"></a></dt>
+<dd><p>List representing the mapping of quantum circuit register to quantum dot.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
+<dd class="field-odd"><p>list[int]</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id10">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.initialize">
@@ -761,9 +1279,110 @@ and initializes all of them to the singlet state.</p>
 </dl>
 </dd></dl>
 
+<dl class="py property">
+<dt class="sig sig-object py" id="id11">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id12">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id13">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">qc</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">QuantumCircuit</span></span><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.to_qiskit">
 <span class="sig-name descname"><span class="pre">to_qiskit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QuantumCircuit</span></span></span><a class="headerlink" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit.to_qiskit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-eoqrid.pulse_distortion">
+<span id="eoqrid-pulse-distortion-module"></span><h2>eoqrid.pulse_distortion module<a class="headerlink" href="#module-eoqrid.pulse_distortion" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.GaussianDistortion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.pulse_distortion.</span></span><span class="sig-name descname"><span class="pre">GaussianDistortion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_per_sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.GaussianDistortion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><code class="xref py py-class docutils literal notranslate"><span class="pre">PulseDistortion</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.GaussianDistortion.amplitude">
+<span class="sig-name descname"><span class="pre">amplitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.GaussianDistortion.amplitude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.GaussianDistortion.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.GaussianDistortion.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.GaussianDistortion.integral">
+<span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.pulse_distortion.GaussianDistortion.integral" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.GaussianDistortion.integral_to_width">
+<span class="sig-name descname"><span class="pre">integral_to_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.GaussianDistortion.integral_to_width" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.PulseDistortion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.pulse_distortion.</span></span><span class="sig-name descname"><span class="pre">PulseDistortion</span></span><a class="headerlink" href="#eoqrid.pulse_distortion.PulseDistortion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.PulseDistortion.amplitude">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">amplitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.PulseDistortion.amplitude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.PulseDistortion.duration">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.PulseDistortion.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.PulseDistortion.integral">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.PulseDistortion.integral" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.PulseDistortion.integral_to_width">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">integral_to_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.PulseDistortion.integral_to_width" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.PulseDistortion.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#eoqrid.pulse_distortion.PulseDistortion.name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.RectangularDistortion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.pulse_distortion.</span></span><span class="sig-name descname"><span class="pre">RectangularDistortion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.RectangularDistortion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><code class="xref py py-class docutils literal notranslate"><span class="pre">PulseDistortion</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.RectangularDistortion.amplitude">
+<span class="sig-name descname"><span class="pre">amplitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.RectangularDistortion.amplitude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.RectangularDistortion.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.RectangularDistortion.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.RectangularDistortion.integral">
+<span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.pulse_distortion.RectangularDistortion.integral" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.pulse_distortion.RectangularDistortion.integral_to_width">
+<span class="sig-name descname"><span class="pre">integral_to_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.pulse_distortion.RectangularDistortion.integral_to_width" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -853,9 +1472,20 @@ and initializes all of them to the singlet state.</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.index_layout">
+<span class="sig-name descname"><span class="pre">index_layout</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.index_layout" title="Link to this definition"></a></dt>
+<dd><p>List representing the mapping of quantum circuit register to quantum dot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
-<dt class="sig sig-object py" id="id9">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">density_matrix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DensityMatrix</span></span><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id14">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">density_matrix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DensityMatrix</span></span><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -896,8 +1526,8 @@ If -1, the global phase factor is not adjusted.</p></li>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="eoqrid.quantum_state.QuantumState.index_layout">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#eoqrid.quantum_state.QuantumState.index_layout" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id15">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -935,18 +1565,18 @@ If -1, the global phase factor is not adjusted.</p></li>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id10">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">logical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id16">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">logical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id11">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id17">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id12">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id18">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -972,13 +1602,13 @@ If -1, the global phase factor is not adjusted.</p></li>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id13">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_rho_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id19">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_rho_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id14">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id20">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -987,8 +1617,8 @@ If -1, the global phase factor is not adjusted.</p></li>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id15">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">statevector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Statevector</span></span><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id21">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">statevector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Statevector</span></span><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1088,33 +1718,33 @@ If -1, the global phase factor is not adjusted.</p></li>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id16">
-<span class="sig-name descname"><span class="pre">freq</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">defaultdict</span></span><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id22">
+<span class="sig-name descname"><span class="pre">freq</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">defaultdict</span></span><a class="headerlink" href="#id22" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id17">
-<span class="sig-name descname"><span class="pre">m_last</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">m_last</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id18">
-<span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id24">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id24" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id19">
-<span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id25">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id25" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id20">
-<span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id26">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id26" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id21">
-<span class="sig-name descname"><span class="pre">qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id27">
+<span class="sig-name descname"><span class="pre">qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span><a class="headerlink" href="#id27" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1150,6 +1780,17 @@ If -1, the global phase factor is not adjusted.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>G</strong> (<em>nx.Graph</em>) – graph</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eoqrid.util.plot_pdist">
+<span class="sig-prename descclassname"><span class="pre">eoqrid.util.</span></span><span class="sig-name descname"><span class="pre">plot_pdist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pulse_distortion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><span class="pre">PulseDistortion</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(12,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.util.plot_pdist" title="Link to this definition"></a></dt>
+<dd><p>Plot the pulse model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pulse_distortion</strong> (<a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><em>PulseDistortion</em></a>) – Pulse distortion.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1316,18 +1957,18 @@ If -1, the global phase factor is not adjusted.</p></li>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id22">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id22" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id28">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id28" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id23">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">readout_pairs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">(</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id29">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">readout_pairs</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">(</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id29" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id24">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">topology</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Graph</span></span><a class="headerlink" href="#id24" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id30">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">topology</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Graph</span></span><a class="headerlink" href="#id30" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1340,10 +1981,219 @@ If -1, the global phase factor is not adjusted.</p></li>
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.GaussianDistortion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">GaussianDistortion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_per_sigma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.GaussianDistortion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><code class="xref py py-class docutils literal notranslate"><span class="pre">PulseDistortion</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.GaussianDistortion.amplitude">
+<span class="sig-name descname"><span class="pre">amplitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.GaussianDistortion.amplitude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.GaussianDistortion.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.GaussianDistortion.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.GaussianDistortion.integral">
+<span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.GaussianDistortion.integral" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.GaussianDistortion.integral_to_width">
+<span class="sig-name descname"><span class="pre">integral_to_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.GaussianDistortion.integral_to_width" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">InstructionSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_clbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pulse_distortion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><span class="pre">PulseDistortion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.InstructionSequence" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">UserList</span></code></p>
+<p>Instruction sequence.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.InstructionSequence.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots (physical qubits).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.num_clbits">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><a class="headerlink" href="#eoqrid.InstructionSequence.num_clbits" title="Link to this definition"></a></dt>
+<dd><p>Number of classical bits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.index_layout">
+<span class="sig-name descname"><span class="pre">index_layout</span></span><a class="headerlink" href="#eoqrid.InstructionSequence.index_layout" title="Link to this definition"></a></dt>
+<dd><p>List representing the mapping of quantum circuit register to quantum dot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.pulse_distortion">
+<span class="sig-name descname"><span class="pre">pulse_distortion</span></span><a class="headerlink" href="#eoqrid.InstructionSequence.pulse_distortion" title="Link to this definition"></a></dt>
+<dd><p>Pulse distortion to model how voltage-pulse durations map to exchange interactions on the quantum chip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion">PulseDistortion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.InstructionSequence.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#eoqrid.InstructionSequence.to_dict" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.to_json">
+<span class="sig-name descname"><span class="pre">to_json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.InstructionSequence.to_json" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.to_physical_quantum_circuit">
+<span class="sig-name descname"><span class="pre">to_physical_quantum_circuit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit" title="eoqrid.physical_quantum_circuit.PhysicalQuantumCircuit"><span class="pre">PhysicalQuantumCircuit</span></a></span></span><a class="headerlink" href="#eoqrid.InstructionSequence.to_physical_quantum_circuit" title="Link to this definition"></a></dt>
+<dd><p>Convert to physical quantum circuit.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.InstructionSequence.to_string">
+<span class="sig-name descname"><span class="pre">to_string</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#eoqrid.InstructionSequence.to_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="eoqrid.Measurement">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">Measurement</span></span><a class="headerlink" href="#eoqrid.Measurement" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></p>
 <p>Measurement instruction.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.NoiseModel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">NoiseModel</span></span><a class="headerlink" href="#eoqrid.NoiseModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>NoiseModel.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">PhysicalQuantumCircuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_dots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_clbits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_layout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Physical quantum circuit in exchange-only architecture.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit.num_dots">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit.num_dots" title="Link to this definition"></a></dt>
+<dd><p>Number of quantum dots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit.num_clbits">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit.num_clbits" title="Link to this definition"></a></dt>
+<dd><p>Number of classical bits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit.qc">
+<span class="sig-name descname"><span class="pre">qc</span></span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit.qc" title="Link to this definition"></a></dt>
+<dd><p>Physical quantum circuit object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>QuantumCircuit</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit.index_layout">
+<span class="sig-name descname"><span class="pre">index_layout</span></span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit.index_layout" title="Link to this definition"></a></dt>
+<dd><p>List representing the mapping of quantum circuit register to quantum dot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id31">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id31" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit.initialize" title="Link to this definition"></a></dt>
+<dd><p>Initialize the physical quantum circuit.</p>
+<p class="rubric">Notes</p>
+<p>Selects three quantum dot pairs sequentially starting from the 0th quantum dot,
+and initializes all of them to the singlet state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit.is_valid" title="Link to this definition"></a></dt>
+<dd><p>Check whether the object is in a valid state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if the object is valid, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id32">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id32" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id33">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id33" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="id34">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">qc</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">QuantumCircuit</span></span><a class="headerlink" href="#id34" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.PhysicalQuantumCircuit.to_qiskit">
+<span class="sig-name descname"><span class="pre">to_qiskit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">QuantumCircuit</span></span></span><a class="headerlink" href="#eoqrid.PhysicalQuantumCircuit.to_qiskit" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1428,9 +2278,20 @@ If -1, the global phase factor is not adjusted.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eoqrid.QuantumState.index_layout">
+<span class="sig-name descname"><span class="pre">index_layout</span></span><a class="headerlink" href="#eoqrid.QuantumState.index_layout" title="Link to this definition"></a></dt>
+<dd><p>List representing the mapping of quantum circuit register to quantum dot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
-<dt class="sig sig-object py" id="id25">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">density_matrix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DensityMatrix</span></span><a class="headerlink" href="#id25" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id35">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">density_matrix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">DensityMatrix</span></span><a class="headerlink" href="#id35" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1471,8 +2332,8 @@ If -1, the global phase factor is not adjusted.</p></li>
 </dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="eoqrid.QuantumState.index_layout">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#eoqrid.QuantumState.index_layout" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id36">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">index_layout</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></span><a class="headerlink" href="#id36" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1510,18 +2371,18 @@ If -1, the global phase factor is not adjusted.</p></li>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id26">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">logical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id26" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id37">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">logical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id37" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id27">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id27" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id38">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id38" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id28">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id28" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id39">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id39" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1547,13 +2408,13 @@ If -1, the global phase factor is not adjusted.</p></li>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id29">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_rho_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id29" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id40">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_rho_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id40" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id30">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id30" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id41">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">physical_sv_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#id41" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1562,8 +2423,34 @@ If -1, the global phase factor is not adjusted.</p></li>
 <dd></dd></dl>
 
 <dl class="py property">
-<dt class="sig sig-object py" id="id31">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">statevector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Statevector</span></span><a class="headerlink" href="#id31" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id42">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">statevector</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Statevector</span></span><a class="headerlink" href="#id42" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eoqrid.RectangularDistortion">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">eoqrid.</span></span><span class="sig-name descname"><span class="pre">RectangularDistortion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">peak</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.RectangularDistortion" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#eoqrid.pulse_distortion.PulseDistortion" title="eoqrid.pulse_distortion.PulseDistortion"><code class="xref py py-class docutils literal notranslate"><span class="pre">PulseDistortion</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.RectangularDistortion.amplitude">
+<span class="sig-name descname"><span class="pre">amplitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.RectangularDistortion.amplitude" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.RectangularDistortion.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.RectangularDistortion.duration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.RectangularDistortion.integral">
+<span class="sig-name descname"><span class="pre">integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#eoqrid.RectangularDistortion.integral" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eoqrid.RectangularDistortion.integral_to_width">
+<span class="sig-name descname"><span class="pre">integral_to_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">integral</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eoqrid.RectangularDistortion.integral_to_width" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1654,33 +2541,33 @@ If -1, the global phase factor is not adjusted.</p></li>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id32">
-<span class="sig-name descname"><span class="pre">freq</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">defaultdict</span></span><a class="headerlink" href="#id32" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id43">
+<span class="sig-name descname"><span class="pre">freq</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">defaultdict</span></span><a class="headerlink" href="#id43" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id33">
-<span class="sig-name descname"><span class="pre">m_last</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#id33" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id44">
+<span class="sig-name descname"><span class="pre">m_last</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></span><a class="headerlink" href="#id44" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id34">
-<span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id34" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id45">
+<span class="sig-name descname"><span class="pre">num_clbits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id45" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id35">
-<span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id35" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id46">
+<span class="sig-name descname"><span class="pre">num_dots</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id46" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id36">
-<span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id36" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id47">
+<span class="sig-name descname"><span class="pre">num_qubits</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#id47" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="id37">
-<span class="sig-name descname"><span class="pre">qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span><a class="headerlink" href="#id37" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="id48">
+<span class="sig-name descname"><span class="pre">qstate</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#eoqrid.quantum_state.QuantumState" title="eoqrid.quantum_state.QuantumState"><span class="pre">QuantumState</span></a></span><a class="headerlink" href="#id48" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

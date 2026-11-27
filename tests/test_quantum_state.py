@@ -115,23 +115,25 @@ def test_random_partial_pure_fid1(trial, num_qubits, depth, optimization_level, 
     
     for _ in range(trial):
         indices = list(range(num_dots))
-        random.shuffle(indices)
+        indices_shuffle = indices[:]
+        random.shuffle(indices_shuffle)
         i = random.randint(1, num_qubits - 1)
-        indices_A = indices[:i*3]
+        indices_shuffle_A = indices_shuffle[:i*3]
+        indices_shuffle_B = indices_shuffle[i*3:]
         indices_B = indices[i*3:]
-        
+
         eoq = EoqEngine(num_dots)
-        qc_phys = PhysicalQuantumCircuit(num_dots, index_layout=indices)
+        qc_phys = PhysicalQuantumCircuit(num_dots, index_layout=indices_shuffle)
         qc_phys.initialize()
         for _ in range(5):
-            a, b = random.sample(indices_A, 2)
+            a, b = random.sample(indices_shuffle_A, 2)
             phase = random.uniform(0.0, 2.0 * np.pi)
             qc_phys.append(ExchangeInteraction(phase), [a, b])
 
         qs_phys_former = eoq.execute(qc_phys).qstate.partial_trace(indices_B)
 
         for _ in range(5):
-            a, b = random.sample(indices_B, 2)
+            a, b = random.sample(indices_shuffle_B, 2)
             phase = random.uniform(0.0, 2.0 * np.pi)
             qc_phys.append(ExchangeInteraction(phase), [a, b])
 

@@ -333,7 +333,11 @@ class EoqTranspiler:
         qc_native = self._decompose(qc)
         qc_native = self._optimize(qc_native, optimization_level, seed)
 
-        return PhysicalQuantumCircuit(qc_native)
+        qc_phys = PhysicalQuantumCircuit()
+        qc_phys.qc = qc_native
+        qc_phys.index_layout = qc_native.layout.final_index_layout()
+        
+        return qc_phys
 
     def _sw(self, a: int, b: int) -> QuantumCircuit:
         """

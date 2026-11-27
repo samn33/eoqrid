@@ -12,14 +12,19 @@ class PhysicalQuantumCircuit:
 
     Attributes
     ----------
-    qc : QuantumCircuit
-        Physical quantum circuit object.
     num_dots : int
         Number of quantum dots.
+    num_clbits : int
+        Number of classical bits.
+    qc : QuantumCircuit
+        Physical quantum circuit object.
+    index_layout : list[int]
+        List representing the mapping of quantum circuit register to quantum dot.
     """
     def __init__(
             self,
-            qc: QuantumCircuit | int,
+            num_dots: int = 1,
+            num_clbits: int = 0,
             index_layout: list[int] | None = None
     ) -> None:
         """
@@ -27,17 +32,18 @@ class PhysicalQuantumCircuit:
 
         Parameters
         ----------
-        qc : QuantumCircuit or int
-            Physical quantum circuit or an integer to create a default quantum circuit.
+        num_dots : int
+            Number of quantum dots.
+        num_clbits : int
+            Number of classical bits.
+        index_layout : list[int]
+            List representing the mapping of quantum circuit register to quantum dot.
         """
-        if isinstance(qc, int):
-            self._qc = QuantumCircuit(qc)
-        elif isinstance(qc, QuantumCircuit):
-            self._qc = qc
+        self._qc = QuantumCircuit(num_dots, num_clbits)
+        if index_layout is None:
+            self._index_layout = list(range(self._qc.num_qubits))
         else:
-            raise TypeError("qc must be QuantumCircuit or integer.")
-
-        self._index_layout = index_layout
+            self._index_layout = index_layout
 
     def is_valid(self) -> bool:
         """
@@ -49,7 +55,7 @@ class PhysicalQuantumCircuit:
             True if the object is valid, False otherwise.
         """
         for name in self._qc.count_ops():
-            if name != 'ex' and name != 'm' and name != 'sin' and name != 'up':
+            if name != 'ex' and name != 'm' and name != 'sin' and name != 'up' and name != 'barrier':
                 return False
         return True
 
@@ -58,6 +64,39 @@ class PhysicalQuantumCircuit:
 
     def __getattr__(self, name):
         return getattr(self._qc, name)
+
+    @property
+    def num_dots(self) -> int:
+        return self._qc.num_qubits
+
+    @property
+    def num_clbits(self) -> int:
+        return self._qc.num_clbits
+
+    @property
+    def index_layout(self) -> list[int]:
+        return self._index_layout
+
+    @property
+    def qc(self) -> QuantumCircuit:
+        return self._qc
+
+    @qc.setter
+    def qc(self, value) -> None:
+        if isinstance(value, QuantumCircuit):
+            self._qc = value
+        else:
+            raise TypeError("The qc must be a QuantumCircuit object.")
+
+    @index_layout.setter
+    def index_layout(self, value) -> None:
+        if isinstance(value, list):
+            if all(isinstance(x, int) and x >=0 for x in value):
+                self._index_layout = value
+            else:
+                raise TypeError("The index_layout must be a list of zero or positive integers object.")
+        else:
+            raise TypeError("The index_layout must be a list.")
 
     def to_qiskit(self) -> QuantumCircuit:
         return self._qc
@@ -90,4 +129,3 @@ class PhysicalQuantumCircuit:
                 )
                 self._qc.append(ResetSinglet(), [a0, a1])
                 self._qc.append(ResetUp(), [a2])
-            

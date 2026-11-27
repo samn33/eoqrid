@@ -9,7 +9,7 @@
 project = 'eoqrid'
 copyright = '2026, Sam.N'
 author = 'Sam.N'
-release = '0.3.2'
+release = '0.4.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -19,7 +19,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'myst_parser'
 ]
-            
+
 templates_path = ['_templates']
 exclude_patterns = []
 
@@ -30,5 +30,4 @@ exclude_patterns = []
 
 #html_theme = 'alabaster'
 html_theme = 'sphinx_rtd_theme'
-
 html_static_path = ['_static']

@@ -20,6 +20,14 @@ eoqrid.eoq\_engine module
    :show-inheritance:
    :undoc-members:
 
+eoqrid.eoq\_scheduler module
+----------------------------
+
+.. automodule:: eoqrid.eoq_scheduler
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 eoqrid.eoq\_simulator module
 ----------------------------
 
@@ -44,6 +52,30 @@ eoqrid.exchange\_interaction module
    :show-inheritance:
    :undoc-members:
 
+eoqrid.instruction module
+-------------------------
+
+.. automodule:: eoqrid.instruction
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+eoqrid.instruction\_layer module
+--------------------------------
+
+.. automodule:: eoqrid.instruction_layer
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+eoqrid.instruction\_sequence module
+-----------------------------------
+
+.. automodule:: eoqrid.instruction_sequence
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 eoqrid.measurement module
 -------------------------
 
@@ -52,10 +84,26 @@ eoqrid.measurement module
    :show-inheritance:
    :undoc-members:
 
+eoqrid.noise\_model module
+--------------------------
+
+.. automodule:: eoqrid.noise_model
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
 eoqrid.physical\_quantum\_circuit module
 ----------------------------------------
 
 .. automodule:: eoqrid.physical_quantum_circuit
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+eoqrid.pulse\_distortion module
+-------------------------------
+
+.. automodule:: eoqrid.pulse_distortion
    :members:
    :show-inheritance:
    :undoc-members:
