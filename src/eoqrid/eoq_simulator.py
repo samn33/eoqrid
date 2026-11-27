@@ -7,6 +7,8 @@ from qiskit_aer import AerSimulator
 
 from eoqrid.dot_architecture import DotArchitecture
 from eoqrid.eoq_transpiler import EoqTranspiler
+from eoqrid.instruction_sequence import InstructionSequence
+from eoqrid.noise_model import NoiseModel
 from eoqrid.physical_quantum_circuit import PhysicalQuantumCircuit
 from eoqrid.quantum_state import QuantumState
 from eoqrid.result import Result
@@ -74,8 +76,10 @@ class EoqSimulator:
         num_dots = qc_native.num_qubits
         num_qubits = num_dots // 3
         num_clbits = qc_native.num_clbits
-        
-        qstate = QuantumState(num_dots)
+
+        index_layout = qc_phys.index_layout
+
+        qstate = QuantumState(num_dots, index_layout=index_layout)
         backend = AerSimulator(method='statevector')
         qc_t = QuantumCircuit(num_dots, num_clbits)
         qc_t.set_statevector(qstate.statevector)
@@ -131,10 +135,7 @@ class EoqSimulator:
         num_qubits = num_dots // 3
         num_clbits = qc_native.num_clbits
 
-        if qc_native.layout is None:
-            index_layout = list(range(num_dots))
-        else:
-            index_layout = qc_native.layout.final_index_layout()
+        index_layout = qc_phys.index_layout
 
         qstate = QuantumState(num_dots, index_layout=index_layout)
         qstate.statevector = qstate.statevector.evolve(qc_native)
@@ -149,6 +150,43 @@ class EoqSimulator:
         )
         return res
 
+    def drive(
+            self,
+            inst_seq: InstructionSequence,
+            noise_model: NoiseModel | None = None,
+            shots: int = 1
+    ) -> Result:
+        """
+        Execute an instruction sequence.
+        
+        Parameters
+        ----------
+        inst_seq : Instruction sequence
+            Instruction sequence.
+        noise_model : NoiseModel
+            Noise model.
+        shots : int, default 1
+            Number of shots.
+        
+        Returns
+        -------
+        Result
+            Execution result.
+        """
+        if not isinstance(inst_seq, InstructionSequence):
+            raise TypeError("inst_seq must be InstructionSequence.")
+        if inst_seq.num_dots != max(self._arch.topology.nodes) + 1:
+            raise ValueError("the number of nodes in the topology and the number of dots do not match.")
+
+        if noise_model is None:
+            qc_phys = inst_seq.to_physical_quantum_circuit()
+            res = self.execute(qc_phys, shots)
+        elif isinstance(noise_model, NoiseModel):
+            pass
+        else:
+            raise ValueError("The noise_model must be NoiseModel object.")
+        return res
+    
     def execute(self, qc_phys: PhysicalQuantumCircuit, shots: int = 1) -> Result:
         """
         Execute a physical quantum circuit.
@@ -183,7 +221,7 @@ class EoqSimulator:
                 case 'ex' | 'm' | 'sin':
                     if not self._arch.topology.has_edge(qid[0], qid[1]):
                         raise ValueError("two quantum dot indices are specified that cannot be acted upon.")
-                case 'up':
+                case 'up' | 'barrier':
                     pass
                 case _:
                     raise ValueError(f"{operation.name} can't be executed because it operate to 2 dots not connected.")

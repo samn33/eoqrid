@@ -28,6 +28,8 @@ class QuantumState:
         NumPy array representing the physical quantum state vector.
     physical_rho_data : np.ndarray
         NumPy array representing the physical density matrix.
+    index_layout : list[int]
+        List representing the mapping of quantum circuit register to quantum dot.
     """
     def __init__(
             self,
@@ -41,6 +43,8 @@ class QuantumState:
         ----------
         num_dots : int
             Number of dots.
+        index_layout : list[int]
+            List representing the mapping of quantum circuit register to quantum dot.
         """
         self._num_dots = num_dots
         self._num_qubits = num_dots // 3

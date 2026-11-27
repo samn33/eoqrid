@@ -7,6 +7,7 @@ from qiskit import QuantumCircuit
 
 from eoqrid.dot_architecture import DotArchitecture
 from eoqrid.physical_quantum_circuit import PhysicalQuantumCircuit
+from eoqrid.pulse_distortion import PulseDistortion
 
 
 def plot_qc(qc: QuantumCircuit | PhysicalQuantumCircuit) -> None:
@@ -87,6 +88,41 @@ def plot_arch(arch: DotArchitecture) -> None:
     """
     plot_graph(arch.topology)
 
+
+def plot_pdist(
+        pulse_distortion: PulseDistortion,
+        width: int = 1.0,
+        figsize: tuple[int,int] = (12, 4)
+) -> None:
+    """
+    Plot the pulse model
+
+    Parameters
+    ----------
+    pulse_distortion : PulseDistortion
+        Pulse distortion.
+    """
+    if not isinstance(pulse_distortion, PulseDistortion):
+        raise TypeError("The pulse_distortion must be a PulseDistortion object.")
+
+    duration = pulse_distortion.duration(width)
+    t_list = np.linspace(0.0, duration * 1.5, 500)
+    J_list = [pulse_distortion.amplitude(t, width) for t in t_list]
+
+    _fig, ax = plt.subplots(figsize=figsize)
+
+    ax.plot(t_list, J_list, label="Exchange Interaction")
+
+    pulses = ([0.0, width],)
+    y_range = (0.0, pulse_distortion.peak)
+    ax.broken_barh(pulses, y_range, facecolor="red", alpha=0.3, label="Pulse width")
+
+    ax.set_title(f"{pulse_distortion.name}\n(pulse width={width})")
+    ax.set_xlabel("t")
+    ax.set_ylabel("J(t)")
+    ax.legend()
+    
+    plt.show()
 
 def random_arch(
         n: int,

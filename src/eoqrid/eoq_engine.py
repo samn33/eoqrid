@@ -3,9 +3,13 @@ from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
 
 from eoqrid.dot_architecture import DotArchitecture
+from eoqrid.eoq_scheduler import EoqScheduler
 from eoqrid.eoq_simulator import EoqSimulator
 from eoqrid.eoq_transpiler import EoqTranspiler
+from eoqrid.instruction_sequence import InstructionSequence
+from eoqrid.noise_model import NoiseModel
 from eoqrid.physical_quantum_circuit import PhysicalQuantumCircuit
+from eoqrid.pulse_distortion import PulseDistortion, RectangularDistortion
 from eoqrid.result import Result
 
 
@@ -21,6 +25,8 @@ class EoqEngine:
         Number of quantum dots.
     transpiler : EoqTranspiler
         Logical-to-physical quantum circuit transpiler.
+    scheduler : EoqScheduler
+        Scheduler to generate instruction sequence.
     simulator : EoqSimulator
         Quantum circuit simulator.
     """
@@ -48,6 +54,7 @@ class EoqEngine:
             raise ValueError("arch is invalid.")
 
         self._transpiler = EoqTranspiler(self.arch)
+        self._scheduler = EoqScheduler()
         self._simulator = EoqSimulator(self.arch)
 
     @property
@@ -67,8 +74,36 @@ class EoqEngine:
         return self._transpiler
 
     @property
+    def scheduler(self):
+        return self._scheduler
+
+    @property
     def simulator(self):
         return self._simulator
+
+    def schedule(
+            self,
+            qc_phys: PhysicalQuantumCircuit,
+            pulse_distortion: PulseDistortion | None = None,
+    ) -> InstructionSequence:
+        """
+        Generate instruction sequence.
+
+        Parameters
+        ----------
+        qc_phys : PhysicalQuantumCircuit
+            Physical quantum circuit.
+        pulse_distortion : PulseDistortion
+            Pulse distortion.
+
+        Returns
+        -------
+        InstructionSequence
+            Instruction sequence.
+        """
+        if pulse_distortion is None:
+            pulse_distortion = RectangularDistortion()
+        return self.scheduler.schedule(qc_phys, pulse_distortion)
 
     def transpile(
             self,
@@ -141,6 +176,32 @@ class EoqEngine:
         
         """
         return self.simulator.execute(qc_phys, shots)
+
+    def drive(
+            self,
+            inst_seq: InstructionSequence,
+            noise_model: NoiseModel | None = None,
+            shots: int = 1
+    ) -> Result:
+        """
+        Execute a instruction sequence.
+        
+        Parameters
+        ----------
+        inst_seq : InstructionSequence
+            Instruction sequence.
+        noise_model : NoiseModel
+            Noise model.
+        shots : int
+            Number of shots.
+    
+        Returns
+        -------
+        Result
+            Execution result.
+        
+        """
+        return self.simulator.drive(inst_seq, noise_model, shots)
 
     def fidelity(self, qc: QuantumCircuit, qc_phys: PhysicalQuantumCircuit) -> float:
         """

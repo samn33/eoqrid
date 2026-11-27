@@ -4,14 +4,22 @@ title Class Diagram
 ' --- Relationships ---
 
 EoqEngine *--> EoqTranspiler
+EoqEngine *--> EoqScheduler
 EoqEngine *--> EoqSimulator
 EoqEngine *--> DotArchitecture
 
 EoqTranspiler o--> DotArchitecture
 EoqSimulator o--> DotArchitecture
 
+EoqTranspiler ..> qiskit.QuantumCircuit : uses
 EoqTranspiler ..> PhysicalQuantumCircuit : generates
+EoqScheduler ..> PhysicalQuantumCircuit : uses
+EoqScheduler ..> PulseDistortion : uses
+EoqScheduler ..> InstructionSequence : generates
+EoqSimulator ..> qiskit.QuantumCircuit : uses
 EoqSimulator ..> PhysicalQuantumCircuit : uses
+EoqSimulator ..> InstructionSequence : uses
+EoqSimulator ..> NoiseModel : uses
 EoqSimulator ..> Result : produces
 
 Result *--> QuantumState
@@ -27,11 +35,14 @@ class EoqEngine {
   + arch: DotArchitecture
   + num_dots: int
   + transpiler: EoqTranspiler
+  + scheduler: EoqScheduler
   + simulator: EoqSimulator
   --
   + transpile(qc: QuantumCircuit, optimization_level: int, seed: int): PhysicalQuantumCircuit
+  + schedule(qc_phys: PhysicalQuantumCircuit, pulse_distortion: PulseDistortion): InstructionSequence
   + run(QuantumCircuit: qc, optimization_level: int, shots: int, seed: int): Result
-  + execute(qc_phys: PhysicalQuantumCircuit, shots: int, seed: int): Result
+  + execute(qc_phys: PhysicalQuantumCircuit, shots: int): Result
+  + drive(inst_seq: InstructionSequence, noise_model: NoiseModel, shots: int): Result 
   + fidelity(qc: QuantumCircuit, qc_phys: PhysicalQuantumCircuit): float
 }
 
@@ -41,11 +52,16 @@ class EoqTranspiler {
   + transpile(qc: QuantumCircuit, optimization_level: int, seed: int): PhysicalQuantumCircuit
 }
 
+class EoqScheduler {
+  + schedule(qc_phys: PhysicalQuantumCircuit, pulse_distortion: PulseDistortion): InstructionSequence
+}
+
 class EoqSimulator {
   + arch: DotArchitecture
   --
-  + run(schedule: PulseSchedule, shots: int): Result
-  + execute(PhysicalQuantumCircuit: qc_phys, int, shots: int seed): Result
+  + run(schedule: InstructionSchedule, shots: int): Result
+  + execute(PhysicalQuantumCircuit: qc_phys, int, shots): Result
+  + drive(inst_seq: InstructionSequence, noise_model: NoiseModel, shots: int): Result
 }
 
 class PhysicalQuantumCircuit {
@@ -90,6 +106,7 @@ class QuantumState {
   + num_qubits: int
   + num_dots: int
   + statevector: Statevector
+  + density_matrix: DensityMatrix
   + data: np.ndarray
   + qiskit_data: np.ndarray
   + logical_sv_data: np.ndarray
@@ -100,6 +117,81 @@ class QuantumState {
   + is_mixed(): bool
   + fidelity(other: QuantumState, mode: str): float
   + partial_trace(indixes: list[int]): QuantumState
+}
+
+PulseDistortion --|> RectangularDistortion
+PulseDistortion --|> GaussianDistortion
+
+abstract class PulseDistortion {
+  + apmlitude(t: float, width: float): float
+  + duration(width: float): float
+  + integral(width: float): float
+  + integral_to_width(integral: float): float
+}
+
+class RectangularDistortion {
+  + peak: float
+}
+
+class GaussianDistortion {
+  + peak: float
+}
+
+collections.UserList --|> InstructionSequence
+collections.UserList --|> InstructionLayer
+InstructionSequence o--> InstructionLayer
+InstructionLayer o--> Instruction
+
+class InstructionSequence {
+  + num_dots: int
+  + num_clbits: int
+  + pulse_distortion: PulseDistortion
+  + data: list[InstructionLayer]
+  --
+  + to_string(): str
+  + duration(): float
+  + to_physical_quantum_circuit(): PhysicalQuantumCircuit
+}
+
+class InstructionLayer {
+  + data: list[Instruction]
+  --
+  + to_string(): str
+  + duration(): float
+}
+
+Instruction --|> InstructionMeasurement
+Instruction --|> InstructionResetUp
+Instruction --|> InstructionResetSinglet
+Instruction --|> InstructionExchangeInteraction
+
+abstract class Instruction {
+  + name: str
+  + qregs: list[int]
+  + width: float
+  --
+  + to_string(): str
+  + to_dict(): dict
+  + duration(): float
+}
+
+class InstructionMeasurement {
+  + cregs: list[int]
+}
+
+class InstructionResetUp {
+}
+
+class InstructionResetSinglet {
+}
+
+class InstructionExchangeInteraction {
+  + pulse_distortion: PulseDistortion
+  --
+  + integral(): float
+}
+
+class NoiseModel {
 }
 
 @enduml
